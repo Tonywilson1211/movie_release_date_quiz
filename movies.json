@@ -1,0 +1,213 @@
+
+[
+    {
+        "title": "The Shawshank Redemption",
+        "clue": "Released in the early 90s",
+        "answer": 1994
+    },
+    {
+        "title": "The Godfather",
+        "clue": "Released in the early 70s",
+        "answer": 1972
+    },
+    {
+        "title": "The Dark Knight",
+        "clue": "Released in the late 2000s",
+        "answer": 2008
+    },
+    {
+        "title": "Forrest Gump",
+        "clue": "Released in the mid 90s",
+        "answer": 1994
+    },
+    {
+        "title": "Inception",
+        "clue": "Released in the early 2010s",
+        "answer": 2010
+    },
+    {
+        "title": "The Matrix",
+        "clue": "Released in the late 90s",
+        "answer": 1999
+    },
+    {
+        "title": "Goodfellas",
+        "clue": "Released in the early 90s",
+        "answer": 1990
+    },
+    {
+        "title": "The Silence of the Lambs",
+        "clue": "Released in the early 90s",
+        "answer": 1991
+    },
+    {
+        "title": "Pulp Fiction",
+        "clue": "Released in the mid 90s",
+        "answer": 1994
+    },
+    {
+        "title": "The Lord of the Rings: The Return of the King",
+        "clue": "Released in the early 2000s",
+        "answer": 2003
+    },
+    {
+        "title": "The French Dispatch",
+        "clue": "Released in the early 2020s",
+        "answer": 2021
+    },
+    {
+        "title": "No Time to Die",
+        "clue": "Released in the early 2020s",
+        "answer": 2021
+    },
+    {
+        "title": "The Batman",
+        "clue": "Released in the mid 2020s",
+        "answer": 2022
+    },
+    {
+        "title": "Avatar 2",
+        "clue": "Released in the early 2020s",
+        "answer": 2022
+    },
+    {
+        "title": "Inception",
+        "clue": "Released in the early 2010s",
+        "answer": 2010
+    },
+    {
+        "title": "The Social Network",
+        "clue": "Released in the early 2010s",
+        "answer": 2010
+    },
+    {
+        "title": "Mad Max: Fury Road",
+        "clue": "Released in the mid 2010s",
+        "answer": 2015
+    },
+    {
+        "title": "Get Out",
+        "clue": "Released in the mid 2010s",
+        "answer": 2017
+    },
+    {
+        "title": "Parasite",
+        "clue": "Released in the late 2010s",
+        "answer": 2019
+    },
+    {
+        "title": "The Shawshank Redemption",
+        "clue": "Released in the early 90s",
+        "answer": 1994
+    },
+    {
+        "title": "The Lord of the Rings: The Fellowship of the Ring",
+        "clue": "Released in the early 2000's",
+        "answer": 2001
+    },
+    {
+        "title": "The Dark Knight",
+        "clue": "Released in the mid 2000's",
+        "answer": 2008
+    },
+    {
+        "title": "Avatar",
+        "clue": "Released in the late 2000's",
+        "answer": 2009
+    },
+    {
+        "title": "The Incredibles",
+        "clue": "Released in the mid 2000's",
+        "answer": 2004
+    },
+    {
+        "title": "Memento",
+        "clue": "Released in the early 2000's",
+        "answer": 2000
+    },
+    {
+        "title": "Psycho",
+        "clue": "Released in the early 1960's",
+        "answer": 1960
+    },
+    {
+        "title": "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
+        "clue": "Released in the mid 1960's",
+        "answer": 1964
+    },
+    {
+        "title": "2001: A Space Odyssey",
+        "clue": "Released in the late 1960's",
+        "answer": 1968
+    },
+    {
+        "title": "The Godfather",
+        "clue": "Released in the early 1970's",
+        "answer": 1972
+    },
+    {
+        "title": "Jaws",
+        "clue": "Released in the mid 1970's",
+        "answer": 1975
+    },
+    {
+        "title": "Star Wars Episode IV: A New Hope",
+        "clue": "Released in the late 1970's",
+        "answer": 1977
+    },
+    {
+        "title": "E.T. the Extra-Terrestrial",
+        "clue": "Released in the early 1980's",
+        "answer": 1982
+    },
+    {
+        "title": "The Terminator",
+        "clue": "Released in the mid 1980's",
+        "answer": 1984
+    },
+    {
+        "title": "Back to the Future",
+        "clue": "Released in the mid 1980's",
+        "answer": 1985
+    },
+    {
+        "title": "Jurassic Park",
+        "clue": "Released in the early 90s",
+        "answer": 1993
+      },
+      {
+        "title": "Top Gun",
+        "clue": "Released in the mid 80s",
+        "answer": 1986
+      },
+      {
+        "title": "Top Gun: Maverick",
+        "clue": "Released in the mid 2020s",
+        "answer": 2022
+      },
+      {
+        "title": "Black Panther",
+        "clue": "Released in the mid 2010s",
+        "answer": 2018
+      },
+      {
+        "title": "Avengers: Endgame",
+        "clue": "Released in the late 2010s",
+        "answer": 2019
+      },
+      {
+        "title": "Harry Potter and the Sorcerer's Stone",
+        "clue": "Released in the early 2000s",
+        "answer": 2001
+      },
+      {
+        "title": "The Lion King",
+        "clue": "Released in the mid 90s",
+        "answer": 1994
+      },
+      {
+        "title": "Pirates of the Caribbean: The Curse of the Black Pearl",
+        "clue": "Released in the early 2000s",
+        "answer": 2003
+      }
+]

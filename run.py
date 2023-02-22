@@ -1,81 +1,15 @@
-import os
+import json
 import random
 
-# function to clear the console
-def clear_console():
-    os.system('cls' if os.name == 'nt' else 'clear')
 
-# function to play the game
 def play_game():
-
-    questions = [
-        {
-            "title": "The Shawshank Redemption",
-            "clue": "Released in the early 90s",
-            "answer": 1994,
-            "score": 0
-        },
-        {
-            "title": "The Godfather",
-            "clue": "Released in the early 70s",
-            "answer": 1972,
-            "score": 0
-        },
-        {
-            "title": "The Dark Knight",
-            "clue": "Released in the late 2000s",
-            "answer": 2008,
-            "score": 0
-        },
-        {
-            "title": "Forrest Gump",
-            "clue": "Released in the mid 90s",
-            "answer": 1994,
-            "score": 0
-        },
-        {
-            "title": "Inception",
-            "clue": "Released in the early 2010s",
-            "answer": 2010,
-            "score": 0
-        },
-        {
-            "title": "The Matrix",
-            "clue": "Released in the late 90s",
-            "answer": 1999,
-            "score": 0
-        },
-        {
-            "title": "Goodfellas",
-            "clue": "Released in the early 90s",
-            "answer": 1990,
-            "score": 0
-        },
-        {
-            "title": "The Silence of the Lambs",
-            "clue": "Released in the early 90s",
-            "answer": 1991,
-            "score": 0
-        },
-        {
-            "title": "Pulp Fiction",
-            "clue": "Released in the mid 90s",
-            "answer": 1994,
-            "score": 0
-        },
-        {
-            "title": "The Lord of the Rings: The Return of the King",
-            "clue": "Released in the early 2000s",
-            "answer": 2003,
-            "score": 0
-        }
-    ]
-
-
+    with open('movies.json', 'r') as f:
+        questions = json.load(f)
+    random.shuffle(questions)
     print("Guess The Year the Film was Released!")
     score = 0
-    for i, question in enumerate(questions):
-        print(f"\nQuestion {i+1} of {len(questions)}:")
+    for i, question in enumerate(questions[:5]):
+        print(f"\nQuestion {i+1} of 5:")
         print(question['title'])
         print("")
         clue_choice = input("Would you like a clue? (y or n): ")
@@ -87,40 +21,55 @@ def play_game():
             print(f"Clue: {question['clue']}")
         answer = int(input("Guess the year: "))
         if answer == question['answer']:
-            if abs(answer - question['answer']) <= 1 and clue_choice.lower() == 'n':
-                score += 7
-                print("You got it! And with a bonus of 2 points for being correct and not using a clue!")
+            if clue_choice.lower() == 'n':
+                points = 7
+                print("You got it! And you got 2 bonus points for not using a clue!")
+                print(f"The movie was indeed released in: {question['answer']}")
             else:
-                score += 5
+                points = 5
                 print("You got it!")
+                print(f"The movie was indeed released in: {question['answer']}")
         elif abs(answer - question['answer']) == 1:
             if clue_choice.lower() == 'n':
-                score += 3
+                points = 5
                 print("Close, but not quite! But you do get 2 bonus points for not using a clue!")
+                print(f"The correct answer is: {question['answer']}")
             else:
+                points = 3
                 print("Close, but not quite!")
+                print(f"The correct answer is: {question['answer']}")
         elif abs(answer - question['answer']) == 2:
             if clue_choice.lower() == 'n':
-                score += 1
+                points = 3
                 print("Not bad, but you can do better! But you do get 2 bonus points for not using a clue!")
+                print(f"The correct answer is: {question['answer']}")
             else:
+                points = 1
                 print("Not bad, but you can do better!")
+                print(f"The correct answer is: {question['answer']}")
         else:
             print("Sorry, that's not correct.")
+            points = 0
             print(f"The correct answer is: {question['answer']}")
-        print(f"You scored {score - sum([q['score'] for q in questions[:i]])} points for this question.")
+        print(f"You scored {points} points for this question.")
+        score += points
         print(f"Your score so far is: {score}")
         print("")
-        choice = input("Press '1' to continue playing, press 'm' to return to main menu or press 'e' to exit the programme: ")
-        while choice.lower() not in ['1', 'm', 'e']:
-            print("Input not recognised. Please enter '1', 'm' or 'e'.")
-            choice = input("Press '1' to continue playing, press 'm' to return to main menu or press 'e' to exit the programme: ")
-        if choice.lower() == 'm':
+        if i == 9:
+            percentage = round(score/70*100, 2)
+            print("\nCongratulations! You have completed the game.")
+            print(f"Your final score is: {score} out of 70.")
+            print(f"That's {percentage}%!")
             return
-        elif choice.lower() == 'e':
-            exit()
-    print("\nCongratulations! You have completed the game.")
-    print(f"Your final score is: {score}")
+        else:
+            choice = input("Press '1' to continue playing, press 'm' to return to main menu or press 'e' to exit the programme: ")
+            while choice.lower() not in ['1', 'm', 'e']:
+                print("Input not recognised. Please enter '1', 'm' or 'e'.")
+                choice = input("Press '1' to continue playing, press 'm' to return to main menu or press 'e' to exit the programme: ")
+            if choice.lower() == 'm':
+                return
+            elif choice.lower() == 'e':
+                exit()
 
 
 # display main menu
@@ -159,7 +108,6 @@ def display_main_menu():
 
 # display instructions "page"
 def display_instructions():
-    clear_console()  # clear the console
     print("INSTRUCTIONS:")
     print("")
     print("1. You will be shown a movie title, and you need to guess the year it was released.")
@@ -174,13 +122,12 @@ def display_instructions():
     print("")
     print("6. If you guess within 2 years of the release date and don't use the clue option, you receive an additional 2 points.")
     print("")
-    print("7. You will be asked 10 questions, so the maximum possible score is 60 points.")
+    print("7. You will be asked 10 questions, so the maximum possible score is 70 points.")
     
     # loop until user navigates back to main menu
     while True:
         choice = input("\nEnter '1' to return to the main menu: ")
         if choice.lower() == '1':
-            clear_console()  # clear the console
             display_main_menu()  # display the main menu again
             break
 
