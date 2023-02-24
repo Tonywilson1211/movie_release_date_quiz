@@ -1,5 +1,9 @@
 import json
 import random
+import os
+
+
+
 
 
 def load_questions():
@@ -22,7 +26,7 @@ def get_clue_choice():
     """
     Get the user's choice on whether they want a clue.
     """
-    clue_choice = input("Would you like a clue? (y or n): ").lower()
+    clue_choice = input("Would you like a clue? (y or n): ").strip().lower()
     while clue_choice not in ['y', 'n']:
         print("Input not recognised. Please enter 'y' or 'n'.")
         clue_choice = input("Would you like a clue? (y or n): ").lower()
@@ -160,12 +164,13 @@ def display_main_menu():
             # TODO: add help information here
         elif choice == '4':
             print("Exiting program...")
-            break  # exit the while loop
+            exit()  # exit the while loop
         else:
             print("Invalid choice, please enter a number from 1 to 4.")
 
 # display instructions "page"
 def display_instructions():
+    os.system('clear')
     print("INSTRUCTIONS:")
     print("")
     print("1. You will be shown a movie title, and you need to guess the year it was released.")
