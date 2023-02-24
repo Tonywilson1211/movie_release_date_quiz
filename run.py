@@ -2,73 +2,131 @@ import json
 import random
 
 
-def play_game():
-    with open('movies.json', 'r') as f:
+def load_questions():
+    """
+    Pull questions from movies.json file.
+    """
+    with open('movies.json', 'r', encoding='utf-8') as f:
         questions = json.load(f)
+    random.shuffle(questions)
+
+
+def print_question_header(question_num):
+    """
+    Print movie name and question number out of 10.
+    """
+    print(f"\nQuestion {question_num+1} of 10:")
+
+
+def get_clue_choice():
+    """
+    Get the user's choice on whether they want a clue.
+    """
+    clue_choice = input("Would you like a clue? (y or n): ").lower()
+    while clue_choice not in ['y', 'n']:
+        print("Input not recognised. Please enter 'y' or 'n'.")
+        clue_choice = input("Would you like a clue? (y or n): ").lower()
+        print("")
+    return clue_choice
+
+
+def print_question_clue(question):
+    """
+    Prints the clue for the user when they ask for a clue.
+    """
+    print(f"Clue: {question['clue']}")
+
+
+def get_user_answer():
+    """
+    User inputs their answer into the terminal.
+    """
+    answer = int(input("Guess the year: "))
+    return answer
+
+
+def calculate_points(user_answer, correct_answer, clue_choice):
+    """
+    The user's answer is compared to the correct answer and the appropriate
+    points are rewarded, along with a feedback message.
+    """
+    if user_answer == correct_answer:
+        if clue_choice == 'n':
+            points = 7
+            feedback = "You got it! And you got 2 bonus points for not using a clue!"
+        else:
+            points = 5
+            feedback = "You got it!"
+    elif abs(user_answer - correct_answer) == 1:
+        if clue_choice == 'n':
+            points = 5
+            feedback = "Close, but not quite! But you do get 2 bonus points for not using a clue!"
+        else:
+            points = 3
+            feedback = "Close, but not quite!"
+    elif abs(user_answer - correct_answer) == 2:
+        if clue_choice == 'n':
+            points = 3
+            feedback = "Not bad, but you can do better! But you do get 2 bonus points for not using a clue!"
+        else:
+            points = 1
+            feedback = "Not bad, but you can do better!"
+    else:
+        points = 0
+        feedback = "Sorry, that's not correct."
+    return points, feedback
+
+
+def get_user_choice():
+    """
+    Navigation for the user to either continue to the next question, return to the main menu or exit the programme.
+    """
+    choice = input("Press '1' to continue playing, press 'm' to return to main menu or press 'e' to exit the programme: ").lower()
+    while choice not in ['1', 'm', 'e']:
+        print("Input not recognised. Please enter '1', 'm' or 'e'.")
+        choice = input("Press '1' to continue playing, press 'm' to return to main menu or press 'e' to exit the programme: ").lower()
+    return choice
+
+
+def show_game_summary(score, total_questions):
+    """
+    At the end of the game, the user is presented with their total score out of the total possible score.
+    The score is also shown as a percentage.
+    """
+    percentage = round(score / total_questions * 100, 2)
+    print("\nCongratulations! You have completed the game.")
+    print(f"Your final score is: {score} out of {total_questions}.")
+    print(f"That's {percentage}%!")
+
+
+def play_game():
+    questions = load_questions('movies.json')
     random.shuffle(questions)
     print("Guess The Year the Film was Released!")
     score = 0
     for i, question in enumerate(questions[:5]):
-        print(f"\nQuestion {i+1} of 5:")
+        print_question_header(i)
         print(question['title'])
         print("")
-        clue_choice = input("Would you like a clue? (y or n): ")
-        while clue_choice.lower() not in ['y', 'n']:
-            print("Input not recognised. Please enter 'y' or 'n'.")
-            clue_choice = input("Would you like a clue? (y or n): ")
-            print("")
-        if clue_choice.lower() == 'y':
-            print(f"Clue: {question['clue']}")
-        answer = int(input("Guess the year: "))
-        if answer == question['answer']:
-            if clue_choice.lower() == 'n':
-                points = 7
-                print("You got it! And you got 2 bonus points for not using a clue!")
-                print(f"The movie was indeed released in: {question['answer']}")
-            else:
-                points = 5
-                print("You got it!")
-                print(f"The movie was indeed released in: {question['answer']}")
-        elif abs(answer - question['answer']) == 1:
-            if clue_choice.lower() == 'n':
-                points = 5
-                print("Close, but not quite! But you do get 2 bonus points for not using a clue!")
-                print(f"The correct answer is: {question['answer']}")
-            else:
-                points = 3
-                print("Close, but not quite!")
-                print(f"The correct answer is: {question['answer']}")
-        elif abs(answer - question['answer']) == 2:
-            if clue_choice.lower() == 'n':
-                points = 3
-                print("Not bad, but you can do better! But you do get 2 bonus points for not using a clue!")
-                print(f"The correct answer is: {question['answer']}")
-            else:
-                points = 1
-                print("Not bad, but you can do better!")
-                print(f"The correct answer is: {question['answer']}")
-        else:
-            print("Sorry, that's not correct.")
-            points = 0
-            print(f"The correct answer is: {question['answer']}")
+        clue_choice = get_clue_choice()
+        if clue_choice == 'y':
+            print_question_clue(question)
+        answer = get_user_answer()
+        points, feedback = calculate_points(answer, question['answer'], clue_choice)
+        print(feedback)
+        print(f"The movie was indeed released in: {question['answer']}")
         print(f"You scored {points} points for this question.")
         score += points
         print(f"Your score so far is: {score}")
         print("")
         if i == 9:
-            percentage = round(score/70*100, 2)
-            print("\nCongratulations! You have completed the game.")
-            print(f"Your final score is: {score} out of 70.")
-            print(f"That's {percentage}%!")
+            show_game_summary(score)
             return
         else:
-            choice = input("Press '1' to continue playing, press 'm' to return to main menu or press 'e' to exit the programme: ")
-            while choice.lower() not in ['1', 'm', 'e']:
-                print("Input not recognised. Please enter '1', 'm' or 'e'.")
-                choice = input("Press '1' to continue playing, press 'm' to return to main menu or press 'e' to exit the programme: ")
-            if choice.lower() == 'm':
+            choice = get_user_choice()
+            if choice == 'm':
                 return
-            elif choice.lower() == 'e':
+            elif choice == 'e':
                 exit()
 
 
