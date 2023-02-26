@@ -3,9 +3,6 @@ import random
 import os
 
 
-
-
-
 def load_questions():
     """
     Pull questions from movies.json file.
@@ -13,13 +10,17 @@ def load_questions():
     with open('movies.json', 'r', encoding='utf-8') as f:
         questions = json.load(f)
     random.shuffle(questions)
+    return questions
 
 
 def print_question_header(question_num):
     """
     Print movie name and question number out of 10.
     """
+    os.system('clear')
+    print("Guess The Year the Movie was Released!")
     print(f"\nQuestion {question_num+1} of 10:")
+    print("")
 
 
 def get_clue_choice():
@@ -27,6 +28,7 @@ def get_clue_choice():
     Get the user's choice on whether they want a clue.
     """
     clue_choice = input("Would you like a clue? (y or n): ").strip().lower()
+    print("")
     while clue_choice not in ['y', 'n']:
         print("Input not recognised. Please enter 'y' or 'n'.")
         clue_choice = input("Would you like a clue? (y or n): ").lower()
@@ -45,8 +47,22 @@ def get_user_answer():
     """
     User inputs their answer into the terminal.
     """
-    answer = int(input("Guess the year: "))
-    return answer
+    while True:
+        print("")
+        answer = input("Guess the year (4 digits): ")
+        if len(answer) != 4:
+            print("Please enter a 4-digit year.")
+            print("")
+            continue
+        try:
+            year = int(answer)
+            if year < 1940 or year > 2025:
+                print("Input not recognised. Please enter a valid year.")
+                continue
+            return year
+        except ValueError:
+            print("Please enter a valid year.")
+            continue
 
 
 def calculate_points(user_answer, correct_answer, clue_choice):
@@ -98,33 +114,38 @@ def show_game_summary(score, total_questions):
     The score is also shown as a percentage.
     """
     percentage = round(score / total_questions * 100, 2)
+    print("")
     print("\nCongratulations! You have completed the game.")
     print(f"Your final score is: {score} out of {total_questions}.")
     print(f"That's {percentage}%!")
 
 
 def play_game():
-    questions = load_questions('movies.json')
-    random.shuffle(questions)
-    print("Guess The Year the Film was Released!")
+    os.system('clear')
+    
     score = 0
-    for i, question in enumerate(questions[:5]):
+    questions = load_questions()
+    for i, question in enumerate(questions[:10]):
         print_question_header(i)
-        print(question['title'])
         print("")
+        print(question['title'].upper())
         clue_choice = get_clue_choice()
         if clue_choice == 'y':
             print_question_clue(question)
         answer = get_user_answer()
         points, feedback = calculate_points(answer, question['answer'], clue_choice)
         print(feedback)
-        print(f"The movie was indeed released in: {question['answer']}")
+        
+        print(f"The {question['title']} was indeed released in {question['answer']}")
+         
+        print(f"The {question['title']} was released in {question['answer']}")
+        print("")
         print(f"You scored {points} points for this question.")
         score += points
         print(f"Your score so far is: {score}")
         print("")
         if i == 9:
-            show_game_summary(score)
+            show_game_summary(score,total_questions)
             return
         else:
             choice = get_user_choice()
@@ -138,7 +159,7 @@ def play_game():
 def display_main_menu():
     print("***************************************************")
     print("*                                                 *")
-    print("*               WELCOME TO MY GAME                *")
+    print("*          MOVIE RELEASE-DATE QUIZ                *")
     print("*                                                 *")
     print("***************************************************")
 
