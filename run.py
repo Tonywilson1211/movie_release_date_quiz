@@ -33,7 +33,7 @@ def get_clue_choice():
     clue_choice = input("\nWould you like a clue? (y or n): ").strip().lower()
     while clue_choice not in ['y', 'n']:
         print("Input not recognised. Please enter 'y' or 'n'.")
-        clue_choice = input("\nWould you like a clue? (y or n): ").lower()
+        clue_choice = input("\nWould you like a clue? (y or n): ").strip().lower()
     return clue_choice
 
 
@@ -50,15 +50,15 @@ def get_user_answer():
     """
     while True:
         print("")
-        answer = input("Guess the year (4 digits): ").strip()
+        answer = input("Guess the year (e.g. 1990): ").strip()
         if len(answer) != 4:
-            print("Please enter a 4-digit year.")
+            print("Please enter a year as a 4-digit number. e.g. 2004")
             print("")
             continue
         try:
             year = int(answer)
-            if year < 1950 or year > 2025:
-                print("Input not recognised. Please enter a valid year.")
+            if year < 1950 or year > 2024:
+                print("Input not recognised. Please enter a valid year between 1950 and 2024.")
                 continue
             return year
         except ValueError:
@@ -110,13 +110,23 @@ def get_user_choice():
     return choice
 
 
+def end_game_get_user_choice():
+    """
+    Navigation for the user at the end of the quiz.
+    """
+    choice = input("Press 'm' to return to main menu or press 'e' to exit the programme: ").strip().lower()
+    while choice not in ['m', 'e']:
+        print("Input not recognised. Please enter '1', 'm' or 'e'.")
+        choice = input("Press 'm' to return to main menu or press 'e' to exit the programme: ").strip().lower()
+    return choice
+
+
 def game_summary(score, total_score):
     """
     Shows user their total score at the end of the game.
     """
     os.system('clear')
     percentage = round(score / total_score * 100)
-    print("\nCongratulations! You have completed the game.")
     print(f"Your final score is: {score} out of {total_score}.")
     print(f"That's {percentage}%!")
 
@@ -125,8 +135,8 @@ def play_game():
     """
     This function runs the game by loading questions from a JSON file,
     asking the user to guess the year a movie was released,
-    and providing feedback on their answer. The function keeps track 
-    of the user's score, displays it at the end of the game, 
+    and providing feedback on their answer. The function keeps track
+    of the user's score, displays it at the end of the game,
     and allows the user to continue playing or return to the main menu.
     """
     score = 0
@@ -137,34 +147,39 @@ def play_game():
     for i, question in enumerate(questions[:num_of_questions]):
         print_question_header(i)
         title = question['title'].upper()
-        print(f"\n    Movie Title:   {title}")
-
+        print(f"\nMovie Title:   {title}")
+        # get clue choice from user
         clue_choice = get_clue_choice()
         if clue_choice == 'y':
             print_question_clue(question)
-
+        # get answer from user
         answer = get_user_answer()
-        points, feedback = calculate_points(answer, question['answer'], clue_choice)
+        points, feedback = calculate_points(
+            answer, question['answer'], clue_choice)
         print(feedback)
         if answer == question['answer']:
-            print(f"{question['title']} was indeed released in {question['answer']}")
+            print(
+                f"{question['title']} was indeed released in {question['answer']}")
         else:
             print(f"{question['title']} was released in {question['answer']}")
 
-        print(f"You scored {points} points for this question.")
+        print(f"\nYou scored {points} points for this question.")
         score += points
         print(f"Your score so far is: {score}\n")
+        get_user_choice()
         if i == num_of_questions - 1:
             game_summary(score, total_score)
-        get_user_choice()
+            end_game_get_user_choice()
+        
     
 
 # display main menu
 def display_main_menu():
+    os.system('clear')
     print("***************************************************")
-    print("*                                                 *")
     print("*          MOVIE RELEASE-DATE QUIZ                *")
-    print("*                                                 *")
+    print("*        Movies from the 60s to 2022              *")
+    print("*          How many will you know!?               *")
     print("***************************************************")
 
     # loop until user chooses to exit
