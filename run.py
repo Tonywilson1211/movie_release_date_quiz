@@ -18,21 +18,22 @@ def print_question_header(question_num):
     Print movie name and question number out of 10.
     """
     os.system('clear')
-    print("Guess The Year the Movie was Released!")
-    print(f"\nQuestion {question_num+1} of 10:")
-    print("")
+    print("***************************************************")
+    print("*                Guess The Year                   *")
+    print("*                   the Movie                     *")
+    print("*                 was Released!                   *")
+    print("***************************************************\n")
+    print(f"\n{'*' * 17} Question {question_num+1} of 5 {'*' * 18}")
 
 
 def get_clue_choice():
     """
     Get the user's choice on whether they want a clue.
     """
-    clue_choice = input("Would you like a clue? (y or n): ").strip().lower()
-    print("")
+    clue_choice = input("\nWould you like a clue? (y or n): ").strip().lower()
     while clue_choice not in ['y', 'n']:
         print("Input not recognised. Please enter 'y' or 'n'.")
-        clue_choice = input("Would you like a clue? (y or n): ").lower()
-        print("")
+        clue_choice = input("\nWould you like a clue? (y or n): ").lower()
     return clue_choice
 
 
@@ -49,14 +50,14 @@ def get_user_answer():
     """
     while True:
         print("")
-        answer = input("Guess the year (4 digits): ")
+        answer = input("Guess the year (4 digits): ").strip()
         if len(answer) != 4:
             print("Please enter a 4-digit year.")
             print("")
             continue
         try:
             year = int(answer)
-            if year < 1940 or year > 2025:
+            if year < 1950 or year > 2025:
                 print("Input not recognised. Please enter a valid year.")
                 continue
             return year
@@ -99,61 +100,64 @@ def calculate_points(user_answer, correct_answer, clue_choice):
 
 def get_user_choice():
     """
-    Navigation for the user to either continue to the next question, return to the main menu or exit the programme.
+    Navigation for the user to either continue to the next question, 
+    return to the main menu or exit the programme.
     """
-    choice = input("Press '1' to continue playing, press 'm' to return to main menu or press 'e' to exit the programme: ").lower()
+    choice = input("Press '1' to continue playing, press 'm' to return to main menu or press 'e' to exit the programme: ").strip().lower()
     while choice not in ['1', 'm', 'e']:
         print("Input not recognised. Please enter '1', 'm' or 'e'.")
-        choice = input("Press '1' to continue playing, press 'm' to return to main menu or press 'e' to exit the programme: ").lower()
+        choice = input("Press '1' to continue playing, press 'm' to return to main menu or press 'e' to exit the programme: ").strip().lower()
     return choice
 
 
-def show_game_summary(score, total_questions):
+def game_summary(score, total_score):
     """
-    At the end of the game, the user is presented with their total score out of the total possible score.
-    The score is also shown as a percentage.
+    Shows user their total score at the end of the game.
     """
-    percentage = round(score / total_questions * 100, 2)
-    print("")
+    os.system('clear')
+    percentage = round(score / total_score * 100)
     print("\nCongratulations! You have completed the game.")
-    print(f"Your final score is: {score} out of {total_questions}.")
+    print(f"Your final score is: {score} out of {total_score}.")
     print(f"That's {percentage}%!")
 
 
 def play_game():
-    os.system('clear')
-    
+    """
+    This function runs the game by loading questions from a JSON file,
+    asking the user to guess the year a movie was released,
+    and providing feedback on their answer. The function keeps track 
+    of the user's score, displays it at the end of the game, 
+    and allows the user to continue playing or return to the main menu.
+    """
     score = 0
+    num_of_questions = 5
     questions = load_questions()
-    for i, question in enumerate(questions[:10]):
+    total_score = num_of_questions * 7
+    
+    for i, question in enumerate(questions[:num_of_questions]):
         print_question_header(i)
-        print("")
-        print(question['title'].upper())
+        title = question['title'].upper()
+        print(f"\n    Movie Title:   {title}")
+
         clue_choice = get_clue_choice()
         if clue_choice == 'y':
             print_question_clue(question)
+
         answer = get_user_answer()
         points, feedback = calculate_points(answer, question['answer'], clue_choice)
         print(feedback)
-        
-        print(f"The {question['title']} was indeed released in {question['answer']}")
-         
-        print(f"The {question['title']} was released in {question['answer']}")
-        print("")
+        if answer == question['answer']:
+            print(f"{question['title']} was indeed released in {question['answer']}")
+        else:
+            print(f"{question['title']} was released in {question['answer']}")
+
         print(f"You scored {points} points for this question.")
         score += points
-        print(f"Your score so far is: {score}")
-        print("")
-        if i == 9:
-            show_game_summary(score,total_questions)
-            return
-        else:
-            choice = get_user_choice()
-            if choice == 'm':
-                return
-            elif choice == 'e':
-                exit()
-
+        print(f"Your score so far is: {score}\n")
+        if i == num_of_questions - 1:
+            game_summary(score, total_score)
+        get_user_choice()
+    
 
 # display main menu
 def display_main_menu():
@@ -192,7 +196,11 @@ def display_main_menu():
 # display instructions "page"
 def display_instructions():
     os.system('clear')
-    print("INSTRUCTIONS:")
+    print("***************************************************")
+    print("*                                                 *")
+    print("*                INSTRUCTION                      *")
+    print("*                                                 *")
+    print("***************************************************")
     print("")
     print("1. You will be shown a movie title, and you need to guess the year it was released.")
     print("")
@@ -214,6 +222,7 @@ def display_instructions():
         if choice.lower() == '1':
             display_main_menu()  # display the main menu again
             break
+
 
 # call the main menu function to start the program
 display_main_menu()
