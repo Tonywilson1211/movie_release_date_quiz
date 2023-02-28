@@ -30,15 +30,16 @@ def get_clue_choice():
     """
     Get the user's choice on whether they want a clue.
     """
+    error_message = ""
     while True:
-        try:
-            clue_choice = input(
-                "\nWould you like a clue? (y or n): ").strip().lower()
-            if clue_choice not in ['y', 'n']:
-                raise ValueError
+        clue_choice = input(f"\033[F\033[K{error_message} \nWould "
+                            "you like a clue? (Y or N): ").strip().upper()
+        if clue_choice not in ['Y', 'N']:
+            error_message = "\033[F\033[KInput not recognised. "\
+                            "Please enter 'Y' or 'N'"
+        else:
+            error_message = ""
             break
-        except ValueError:
-            print("Input not recognised. Please enter 'y' or 'n'.")
     return clue_choice
 
 
@@ -46,30 +47,32 @@ def print_question_clue(question):
     """
     Prints the clue for the user when they ask for a clue.
     """
-    print(f"Clue: {question['clue']}")
+    print(f"\nClue: {question['clue']}\n\n\n")
 
 
 def get_user_answer():
     """
     User inputs their answer into the terminal.
     """
+    error_message = ""
     while True:
-        print("")
-        answer = input("Guess the year (e.g. 1990): ").strip()
+        answer = input(f"\033[F\033[K{error_message}Guess the "
+                       "year (e.g. 1990): ").strip()
         if len(answer) != 4:
-            print("Please enter a year as a 4-digit number. e.g. 2004")
-            print("")
-            continue
-        try:
-            year = int(answer)
-            if year < 1950 or year > 2024:
-                print("Input not recognised."
-                      "Please enter a valid year between 1950 and 2024.")
-                continue
-            return year
-        except ValueError:
-            print("Please enter a valid year.")
-            continue
+            error_message = "\033[F\033[KPlease enter a year as a "\
+                            "4-digit number. e.g. 2004.\n"
+        else:
+            try:
+                year = int(answer)
+                if year < 1950 or year > 2024:
+                    error_message = "\033[F\033[KInput not recognised. "\
+                                    "Please enter a valid year between "\
+                                    "1950 and 2024.\n"
+                else:
+                    return year
+            except ValueError:
+                error_message = "\033[F\033[KPlease enter a year as a "\
+                            "4-digit number. e.g. 2004.\n"
 
 
 def calculate_points(user_answer, correct_answer, clue_choice):
@@ -78,32 +81,32 @@ def calculate_points(user_answer, correct_answer, clue_choice):
     points are rewarded, along with a feedback message.
     """
     if user_answer == correct_answer:
-        if clue_choice == 'n':
+        if clue_choice == 'N':
             points = 7
-            feedback = "You got it! And you got 2 bonus "\
-                       "points for not using a clue!"
+            feedback = "\nYou got it! And you got 2 bonus "\
+                       "points for not using a clue!\n"
         else:
             points = 5
-            feedback = "You got it!"
+            feedback = "\nYou got it!"
     elif abs(user_answer - correct_answer) == 1:
-        if clue_choice == 'n':
+        if clue_choice == 'N':
             points = 5
-            feedback = "Close, but not quite! But you do get 2"\
-                       "bonus points for not using a clue!"
+            feedback = "\nClose, but not quite! But you do get 2 "\
+                       "bonus points for not using a clue!\n"
         else:
             points = 3
-            feedback = "Close, but not quite!"
+            feedback = "\nClose, but not quite!\n"
     elif abs(user_answer - correct_answer) == 2:
-        if clue_choice == 'n':
+        if clue_choice == 'N':
             points = 3
-            feedback = "Not bad, but you can do better! But you do get 2 "\
-                       "bonus points for not using a clue!"
+            feedback = "\nNot bad, but you can do better! But you do get 2 "\
+                       "bonus points for not using a clue!\n"
         else:
             points = 1
-            feedback = "Not bad, but you can do better!"
+            feedback = "\nNot bad, but you can do better!\n"
     else:
         points = 0
-        feedback = "Sorry, that's not correct."
+        feedback = "\nSorry, that's not correct.\n"
     return points, feedback
 
 
@@ -114,14 +117,15 @@ def get_user_choice():
     """
     while True:
         try:
-            choice = input("Press '1' to continue playing,"
-                           "press 'm' to return to main menu or "
-                           "press 'e' to exit the programme: ").strip().lower()
-            if choice not in ['1', 'm', 'e']:
+            choice = input("Press '1' to continue playing\n"
+                           "Press 'M' to return to main menu\n"
+                           "Press 'E' to exit the "
+                           "programme\n ").strip().upper()
+            if choice not in ['1', 'M', 'E']:
                 raise ValueError
             break
         except ValueError:
-            print("Input not recognised. Please enter '1', 'm' or 'e'.")
+            print("Input not recognised. Please enter '1', 'M' or 'E'.")
     return choice
 
 
@@ -131,13 +135,14 @@ def end_game_get_user_choice():
     """
     while True:
         try:
-            choice = input("Press 'm' to return to main menu or "
-                           "press 'e' to exit the programme: ").strip().lower()
-            if choice not in ['m', 'e']:
+            choice = input("Press 'M' to return to main menu\n"
+                           "Press 'E' to exit the "
+                           "programme\n ").strip().upper()
+            if choice not in ['M', 'E']:
                 raise ValueError
             break
         except ValueError:
-            print("Input not recognised. Please enter 'm' or 'e'.")
+            print("Input not recognised. Please enter '1', 'M' or 'E'.")
     return choice
 
 
@@ -146,8 +151,14 @@ def game_summary(score, total_score):
     Shows user their total score at the end of the game.
     """
     os.system('clear')
+    print("***************************************************")
+    print("*          MOVIE RELEASE-DATE QUIZ                *")
+    print("*                  RESULTS!                       *")
+    print("*          Let's see how you got on!              *")
+    print("***************************************************")
     percentage = round(score / total_score * 100)
-    print(f"Your final score is: {score} out of a posible {total_score}.")
+    print(f"\n\nYour final score is: {score} out of a "
+          "posible {total_score}.\n")
     print(f"That's {percentage}%!")
 
 
@@ -166,10 +177,11 @@ def play_game():
     for i, question in enumerate(questions[:num_of_questions]):
         print_question_header(i)
         title = question['title'].upper()
-        print(f"\nMovie Title:   {title}")
+        print(f"\nMovie Title:   {title}\n")
+        print("")
         # get clue choice from user
         clue_choice = get_clue_choice()
-        if clue_choice == 'y':
+        if clue_choice == 'Y':
             print_question_clue(question)
         # get answer from user
         answer = get_user_answer()
@@ -185,7 +197,7 @@ def play_game():
 
         print(f"\nYou scored {points} points for this question.")
         score += points
-        print(f"Your score so far is: {score}\n")
+        print(f"So far you have scored {score} points\n")
         get_user_choice()
         if i == num_of_questions - 1:
             game_summary(score, total_score)
