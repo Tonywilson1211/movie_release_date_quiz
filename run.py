@@ -30,10 +30,15 @@ def get_clue_choice():
     """
     Get the user's choice on whether they want a clue.
     """
-    clue_choice = input("\nWould you like a clue? (y or n): ").strip().lower()
-    while clue_choice not in ['y', 'n']:
-        print("Input not recognised. Please enter 'y' or 'n'.")
-        clue_choice = input("\nWould you like a clue? (y or n): ").strip().lower()
+    while True:
+        try:
+            clue_choice = input(
+                "\nWould you like a clue? (y or n): ").strip().lower()
+            if clue_choice not in ['y', 'n']:
+                raise ValueError
+            break
+        except ValueError:
+            print("Input not recognised. Please enter 'y' or 'n'.")
     return clue_choice
 
 
@@ -58,7 +63,8 @@ def get_user_answer():
         try:
             year = int(answer)
             if year < 1950 or year > 2024:
-                print("Input not recognised. Please enter a valid year between 1950 and 2024.")
+                print("Input not recognised."
+                      "Please enter a valid year between 1950 and 2024.")
                 continue
             return year
         except ValueError:
@@ -74,21 +80,24 @@ def calculate_points(user_answer, correct_answer, clue_choice):
     if user_answer == correct_answer:
         if clue_choice == 'n':
             points = 7
-            feedback = "You got it! And you got 2 bonus points for not using a clue!"
+            feedback = "You got it! And you got 2 bonus "\
+                       "points for not using a clue!"
         else:
             points = 5
             feedback = "You got it!"
     elif abs(user_answer - correct_answer) == 1:
         if clue_choice == 'n':
             points = 5
-            feedback = "Close, but not quite! But you do get 2 bonus points for not using a clue!"
+            feedback = "Close, but not quite! But you do get 2"\
+                       "bonus points for not using a clue!"
         else:
             points = 3
             feedback = "Close, but not quite!"
     elif abs(user_answer - correct_answer) == 2:
         if clue_choice == 'n':
             points = 3
-            feedback = "Not bad, but you can do better! But you do get 2 bonus points for not using a clue!"
+            feedback = "Not bad, but you can do better! But you do get 2 "\
+                       "bonus points for not using a clue!"
         else:
             points = 1
             feedback = "Not bad, but you can do better!"
@@ -100,13 +109,19 @@ def calculate_points(user_answer, correct_answer, clue_choice):
 
 def get_user_choice():
     """
-    Navigation for the user to either continue to the next question, 
+    Navigation for the user to either continue to the next question,
     return to the main menu or exit the programme.
     """
-    choice = input("Press '1' to continue playing, press 'm' to return to main menu or press 'e' to exit the programme: ").strip().lower()
-    while choice not in ['1', 'm', 'e']:
-        print("Input not recognised. Please enter '1', 'm' or 'e'.")
-        choice = input("Press '1' to continue playing, press 'm' to return to main menu or press 'e' to exit the programme: ").strip().lower()
+    while True:
+        try:
+            choice = input("Press '1' to continue playing,"
+                           "press 'm' to return to main menu or "
+                           "press 'e' to exit the programme: ").strip().lower()
+            if choice not in ['1', 'm', 'e']:
+                raise ValueError
+            break
+        except ValueError:
+            print("Input not recognised. Please enter '1', 'm' or 'e'.")
     return choice
 
 
@@ -114,10 +129,15 @@ def end_game_get_user_choice():
     """
     Navigation for the user at the end of the quiz.
     """
-    choice = input("Press 'm' to return to main menu or press 'e' to exit the programme: ").strip().lower()
-    while choice not in ['m', 'e']:
-        print("Input not recognised. Please enter '1', 'm' or 'e'.")
-        choice = input("Press 'm' to return to main menu or press 'e' to exit the programme: ").strip().lower()
+    while True:
+        try:
+            choice = input("Press 'm' to return to main menu or "
+                           "press 'e' to exit the programme: ").strip().lower()
+            if choice not in ['m', 'e']:
+                raise ValueError
+            break
+        except ValueError:
+            print("Input not recognised. Please enter 'm' or 'e'.")
     return choice
 
 
@@ -127,7 +147,7 @@ def game_summary(score, total_score):
     """
     os.system('clear')
     percentage = round(score / total_score * 100)
-    print(f"Your final score is: {score} out of {total_score}.")
+    print(f"Your final score is: {score} out of a posible {total_score}.")
     print(f"That's {percentage}%!")
 
 
@@ -143,7 +163,6 @@ def play_game():
     num_of_questions = 5
     questions = load_questions()
     total_score = num_of_questions * 7
-    
     for i, question in enumerate(questions[:num_of_questions]):
         print_question_header(i)
         title = question['title'].upper()
@@ -159,7 +178,8 @@ def play_game():
         print(feedback)
         if answer == question['answer']:
             print(
-                f"{question['title']} was indeed released in {question['answer']}")
+                f"{question['title']} was indeed "
+                f"released in {question['answer']}")
         else:
             print(f"{question['title']} was released in {question['answer']}")
 
@@ -170,11 +190,12 @@ def play_game():
         if i == num_of_questions - 1:
             game_summary(score, total_score)
             end_game_get_user_choice()
-        
-    
 
-# display main menu
+
 def display_main_menu():
+    """
+    Display main menu
+    """
     os.system('clear')
     print("***************************************************")
     print("*          MOVIE RELEASE-DATE QUIZ                *")
@@ -198,18 +219,21 @@ def display_main_menu():
             print("Starting game...")
             play_game()
         elif choice == '2':
-            display_instructions()  # call function to display instructions "page"
+            # call function to display instructions "page"
+            display_instructions()
         elif choice == '3':
             print("Displaying help...")
-            # TODO: add help information here
         elif choice == '4':
             print("Exiting program...")
-            exit()  # exit the while loop
+            exit()
         else:
             print("Invalid choice, please enter a number from 1 to 4.")
 
-# display instructions "page"
+
 def display_instructions():
+    """
+    Displays instructions on how to play the game
+    """
     os.system('clear')
     print("***************************************************")
     print("*                                                 *")
@@ -217,7 +241,8 @@ def display_instructions():
     print("*                                                 *")
     print("***************************************************")
     print("")
-    print("1. You will be shown a movie title, and you need to guess the year it was released.")
+    print("1. You will be shown a movie title, and you need"
+          "to guess the year it was released.")
     print("")
     print("2. If you guess correctly, you get 5 points.")
     print("")
@@ -225,13 +250,14 @@ def display_instructions():
     print("")
     print("4. If you are 2 years off the correct answer, you get 1 point.")
     print("")
-    print("5. If you are 3 or more years away from the correct answer, you get 0 points.")
+    print("5. If you are 3 or more years away from the "
+          "correct answer, you get 0 points.")
     print("")
-    print("6. If you guess within 2 years of the release date and don't use the clue option, you receive an additional 2 points.")
+    print("6. If you guess within 2 years of the release date and"
+          "don't use the clue option, you receive an additional 2 points.")
     print("")
-    print("7. You will be asked 10 questions, so the maximum possible score is 70 points.")
-    
-    # loop until user navigates back to main menu
+    print("7. You will be asked 10 questions, so the maximum"
+          "possible score is 70 points.")
     while True:
         choice = input("\nEnter '1' to return to the main menu: ")
         if choice.lower() == '1':

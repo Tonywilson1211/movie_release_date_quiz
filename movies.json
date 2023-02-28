@@ -509,5 +509,220 @@
         "title": "Harry Potter and the Deathly Hallows - Part 2",
         "clue": "Released in the early 2010s",
         "answer": 2011
-    }
+    },
+    {
+        "title": "Harry Potter and the Prisoner of Azkaban",
+        "clue": "Released in the mid-2000s",
+        "answer": 2004
+    },
+    {
+        "title": "The Godfather Part II",
+        "clue": "Released in the mid 1970s",
+        "answer": 1974
+    },
+    {
+        "title": "Schindler's List",
+        "clue": "Released in the early 1990s",
+        "answer": 1993
+    },
+    {
+        "title": "Fight Club",
+        "clue": "Released in the late 1990s",
+        "answer": 1999
+    },
+    {
+        "title": "The Matrix",
+        "clue": "Released in the late 1990s",
+        "answer": 1999
+    },
+    {
+        "title": "GoodFellas",
+        "clue": "Released in the early 1990s",
+        "answer": 1990
+    },
+    {
+        "title": "Saving Private Ryan",
+        "clue": "Released in the late 1990s",
+        "answer": 1998
+    },
+    {
+        "title": "Interstellar",
+        "clue": "Released in the mid-2010s",
+        "answer": 2014
+    },
+    {
+        "title": "The Green Mile",
+        "clue": "Released in the late 1990s",
+        "answer": 1999
+    },
+    {
+        "title": "Terminator 2: Judgment Day",
+        "clue": "Released in the early 1990s",
+        "answer": 1991
+    },
+    {
+        "title": "The Terminator",
+        "clue": "Released in the mid-1980s",
+        "answer": 1984
+    },
+    {
+        "title": "Gladiator",
+        "clue": "Released in the early 2000s",
+        "answer": 2000
+    },
+    {
+        "title": "The Usual Suspects",
+        "clue": "Released in the mid-1990s",
+        "answer": 1995
+    },
+    {
+        "title": "Whiplash",
+        "clue": "Released in the mid-2010s",
+        "answer": 2014
+    },
+    {
+        "title": "The Prestige",
+        "clue": "Released in the mid-2000s",
+        "answer": 2006
+    },
+    {
+        "title": "Alien",
+        "clue": "Released in the late 1970s",
+        "answer": 1979
+    },
+    {
+        "title": "Django Unchained",
+        "clue": "Released in the early 2010s",
+        "answer": 2012
+    },
+    {
+        "title": "Indiana Jones and the Raiders of the Lost Ark",
+        "clue": "Released in the early 1980s",
+        "answer": 1981
+    },
+    {
+        "title": "WALL·E",
+        "clue": "Released in the late 2000s",
+        "answer": 2008
+    },
+    {
+        "title": "Toy Story",
+        "clue": "Released in the mid-1990s",
+        "answer": 1995
+        },
+        {
+        "title": "Good Will Hunting",
+        "clue": "Released in the late 1990s",
+        "answer": 1997
+        },
+        {
+        "title": "Scarface",
+        "clue": "Released in the early 1980s",
+        "answer": 1983
+        },
+        {
+        "title": "Die Hard",
+        "clue": "Released in the late 1980s",
+        "answer": 1988
+        },
+        {
+        "title": "Snatch",
+        "clue": "Released in the late 1990s",
+        "answer": 2000
+        },
+        {
+        "title": "Indiana Jones and the Last Crusade",
+        "clue": "Released in the late 1980s",
+        "answer": 1989
+        },
+        {
+        "title": "1917",
+        "clue": "Released in the mid-2010s",
+        "answer": 2019
+        },
+        {
+        "title": "Batman Begins",
+        "clue": "Released in the mid-2000s",
+        "answer": 2005
+        },
+        {
+        "title": "The Wolf of Wall Street",
+        "clue": "Released in the early 2010s",
+        "answer": 2013
+        },
+        {
+        "title": "The Truman Show",
+        "clue": "Released in the late 1990s",
+        "answer": 1998
+        },
+        {
+        "title": "A Beautiful Mind",
+        "clue": "Released in the early 2000s",
+        "answer": 2001
+        },
+        {
+        "title": "Monty Python and the Holy Grail",
+        "clue": "Released in the mid-1970s",
+        "answer": 1975
+        },
+        {
+        "title": "V for Vendetta",
+        "clue": "Released in the mid-2000s",
+        "answer": 2006
+        },
+        {
+        "title": "Trainspotting",
+        "clue": "Released in the mid-1990s",
+        "answer": 1996
+        },
+        {
+        "title": "Gran Torino",
+        "clue": "Released in the late 2000s",
+        "answer": 2008
+        },
+        {
+        "title": "12 Years a Slave",
+        "clue": "Released in the early 2010s",
+        "answer": 2013
+        },
+        {
+        "title": "Gone Girl",
+        "clue": "Released in the mid-2010s",
+        "answer": 2014
+        },
+        {
+        "title": "Hacksaw Ridge",
+        "clue": "Released in the mid-2010s",
+        "answer": 2016
+        },
+        {
+        "title": "Mad Max: Fury Road",
+        "clue": "Released in the mid-2010s",
+        "answer": 2015
+        },
+        {
+        "title": "Dead Poets Society",
+        "clue": "Released in the late 1980s",
+        "answer": 1989
+        },
+        {
+        "title": "Rush",
+        "clue": "Released in the early 2010s",
+        "answer": 2013
+        },
+        {
+        "title": "Into the Wild",
+        "clue": "Released in the mid-2000s",
+        "answer": 2007
+        },
+        {
+        "title": "The Incredibles",
+        "clue": "Released in the mid-2000s",
+        "answer": 2004
+        },
+        {
+        "title": "Hachi: A Dog's Tale",
+        "clue": "Released in the late 2000s",
+        "answer": 2009
+        }
 ]
