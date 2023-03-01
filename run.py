@@ -120,7 +120,7 @@ def get_user_choice():
             choice = input("Press '1' to continue playing\n"
                            "Press 'M' to return to main menu\n"
                            "Press 'E' to exit the "
-                           "programme\n ").strip().upper()
+                           "programme\nSelect Option: ").strip().upper()
             if choice not in ['1', 'M', 'E']:
                 raise ValueError
             break
@@ -137,7 +137,7 @@ def end_game_get_user_choice():
         try:
             choice = input("Press 'M' to return to main menu\n"
                            "Press 'E' to exit the "
-                           "programme\n ").strip().upper()
+                           "programme\nSelect Option: ").strip().upper()
             if choice not in ['M', 'E']:
                 raise ValueError
             break
@@ -156,10 +156,13 @@ def game_summary(score, total_score):
     print("*                  RESULTS!                       *")
     print("*          Let's see how you got on!              *")
     print("***************************************************")
+    print("\nCongratulations you have completed the quiz!")
+    print("Let's take a look at how you got on....")
     percentage = round(score / total_score * 100)
-    print(f"\n\nYour final score is: {score} out of a "
-          "posible {total_score}.\n")
-    print(f"That's {percentage}%!")
+    print(f"\nYour final score is {score} out of a "
+          f"posible {total_score}. That's {percentage}%!\n")
+    print("Thanks for taking the time to play our "
+          "quiz, we hope you have fun!\n")
 
 
 def play_game():
@@ -194,7 +197,6 @@ def play_game():
                 f"released in {question['answer']}")
         else:
             print(f"{question['title']} was released in {question['answer']}")
-
         print(f"\nYou scored {points} points for this question.")
         score += points
         print(f"So far you have scored {score} points\n")
@@ -217,21 +219,21 @@ def display_main_menu():
 
     # loop until user chooses to exit
     while True:
-        print("\nPlease choose an option:")
+        print("\nMain Menu:\n")
         print("1. Start game")
-        print("2. How to play")
-        print("3. Help")
-        print("4. Exit program")
+        print("2. Quiz Guide")
+        print("3. About the Developer")
+        print("4. Exit program\n")
 
         # get user input
-        choice = input("Enter option number (1-4): ")
+        choice = input("Select Option (1-4): ")
 
         # handle user choice
         if choice == '1':
-            print("Starting game...")
+            print("Starting game...good luck!")
             play_game()
         elif choice == '2':
-            # call function to display instructions "page"
+            print("Opening Instructions...")
             display_instructions()
         elif choice == '3':
             print("Displaying help...")
@@ -249,27 +251,41 @@ def display_instructions():
     os.system('clear')
     print("***************************************************")
     print("*                                                 *")
-    print("*                INSTRUCTION                      *")
+    print("*                QUIZ GUIDE                       *")
     print("*                                                 *")
     print("***************************************************")
-    print("")
-    print("1. You will be shown a movie title, and you need"
-          "to guess the year it was released.")
-    print("")
-    print("2. If you guess correctly, you get 5 points.")
-    print("")
-    print("3. If you are 1 year off the correct answer, you get 3 points.")
-    print("")
-    print("4. If you are 2 years off the correct answer, you get 1 point.")
-    print("")
-    print("5. If you are 3 or more years away from the "
-          "correct answer, you get 0 points.")
-    print("")
-    print("6. If you guess within 2 years of the release date and"
-          "don't use the clue option, you receive an additional 2 points.")
-    print("")
-    print("7. You will be asked 10 questions, so the maximum"
-          "possible score is 70 points.")
+    print("\n\n******** THE AIM OF THE GAME! ********\n\n")
+    print("The aim of the game is to correctly guess the release date"
+          " of the movie. Simple! (if you know the answer that is...)")
+    print("\n\n******** THE QUIZ FORMAT ********\n\n")
+    print("When the quiz first begins you will see the name of the movie,"
+          " and you will be invited to choose to see a clue or not. Once"
+          " you have made your choice you will be invited to guess the"
+          " answer. Once you have entered your answer you will see"
+          " if you were correct, the number of points scored, and your"
+          " total score so far. Once you have answered 5 questions"
+          " you will be taken to the quiz summary screen and you can review"
+          " how well you did.\n")
+
+    print("\n\n******** HOW CLUES WORK ********\n\n")
+    print("Before you guess the year the movie was released"
+          " you will be asked if you want to see a clue."
+          " You'll need to enter either 'Y' (yes) or 'N' (no)")
+    print("\nAll clues give you a good hint as to when the movie"
+          " was released. For example, if a movie was released in"
+          " 2002 then the clue would be 'Released in early 2000s'")
+    print("\n\n******** HOW THE POINTS ARE CALCULATED ********\n\n")
+    print("If you enter the correct answer, you are rewarded 5 points.\n")
+    print("If you are 1 year off the correct answer, you are rewarded"
+          " with 3 points.\n")
+    print("If you are 2 years off the correct answer, you are rewarded"
+          " with 1 point.\n")
+    print("If you are 3 or more years away from the "
+          "correct answer, you get 0 points.\n")
+    print("If you guess within 2 years of the release date and"
+          "don't use the clue option, you receive an additional 2 points.\n")
+    print("You will be asked 5 questions, so the maximum"
+          "possible score is 35 points.\n")
     while True:
         choice = input("\nEnter '1' to return to the main menu: ")
         if choice.lower() == '1':
@@ -277,5 +293,15 @@ def display_instructions():
             break
 
 
-# call the main menu function to start the program
-display_main_menu()
+def landing_page():
+    name = input("Hello there! Great to see you here with us today."
+                 "What's your name? ")
+    print(f"Welcome {name}!")
+    while True:
+        choice = input("\nEnter '1' to head over to the main menu: ")
+        if choice.lower() == '1':
+            display_main_menu()  # display the main menu again
+            break
+
+
+landing_page()

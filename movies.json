@@ -96,11 +96,6 @@
         "answer": 2019
     },
     {
-        "title": "The Shawshank Redemption",
-        "clue": "Released in the early 90s",
-        "answer": 1994
-    },
-    {
         "title": "The Lord of the Rings: The Fellowship of the Ring",
         "clue": "Released in the early 2000's",
         "answer": 2001
@@ -116,34 +111,14 @@
         "answer": 2009
     },
     {
-        "title": "The Incredibles",
-        "clue": "Released in the mid 2000's",
-        "answer": 2004
-    },
-    {
         "title": "Memento",
         "clue": "Released in the early 2000's",
         "answer": 2000
     },
     {
-        "title": "Psycho",
-        "clue": "Released in the early 1960's",
-        "answer": 1960
-    },
-    {
-        "title": "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
-        "clue": "Released in the mid 1960's",
-        "answer": 1964
-    },
-    {
         "title": "2001: A Space Odyssey",
         "clue": "Released in the late 1960's",
         "answer": 1968
-    },
-    {
-        "title": "The Godfather",
-        "clue": "Released in the early 1970's",
-        "answer": 1972
     },
     {
         "title": "Jaws",
@@ -187,7 +162,7 @@
       },
       {
         "title": "Black Panther",
-        "clue": "Released in the mid 2010s",
+        "clue": "Released in the late 2010s",
         "answer": 2018
       },
       {
@@ -201,7 +176,7 @@
         "answer": 2001
       },
       {
-        "title": "The Lion King",
+        "title": "The Lion King (original)",
         "clue": "Released in the mid 90s",
         "answer": 1994
       },
@@ -339,93 +314,88 @@
         "title": "The Fast and the Furious",
         "clue": "Released in the early 2000s",
         "answer": 2001
-      },
-      {
+    },
+    {
         "title": "2 Fast 2 Furious",
         "clue": "Released in the early 2000s",
         "answer": 2003
-      },
-      {
+    },
+    {
         "title": "The Fast and the Furious: Tokyo Drift",
         "clue": "Released in the mid 2000s",
         "answer": 2006
-      },
-      {
+    },
+    {
         "title": "Fast & Furious",
         "clue": "Released in the late 2000s",
         "answer": 2009
-      },
-      {
+    },
+    {
         "title": "Fast Five",
         "clue": "Released in the early 2010s",
         "answer": 2011
-      },
-      {
+    },
+    {
         "title": "Fast & Furious 6",
         "clue": "Released in the early 2010s",
         "answer": 2013
-      },
-      {
+    },
+    {
         "title": "Furious 7",
         "clue": "Released in the mid 2010s",
         "answer": 2015
-      },
-      {
+    },
+    {
         "title": "The Fate of the Furious",
         "clue": "Released in the mid 2010s",
         "answer": 2017
-      },
-      {
-        "title": "F9",
-        "clue": "Released in the early 2020s",
-        "answer": 2021
-      },
-      {
+    },
+    {
         "title": "Star Wars: Episode IV - A New Hope",
         "clue": "Released in the late 70s",
         "answer": 1977
-      },
-      {
+    },
+    {
         "title": "Star Wars: Episode V - The Empire Strikes Back",
         "clue": "Released in the early 80s",
         "answer": 1980
-      },
-      {
+    },
+    {
         "title": "Star Wars: Episode VI - Return of the Jedi",
         "clue": "Released in the early 80s",
         "answer": 1983
-      },
-      {
+    },
+    {
         "title": "Star Wars: Episode I - The Phantom Menace",
         "clue": "Released in the late 90s",
         "answer": 1999
-      },
-      {
+    },
+    {
         "title": "Star Wars: Episode II - Attack of the Clones",
         "clue": "Released in the early 2000s",
         "answer": 2002
-      },
-      {
+    },
+    {
         "title": "Star Wars: Episode III - Revenge of the Sith",
         "clue": "Released in the mid 2000s",
         "answer": 2005
-      },
-      {
+    },
+    {
         "title": "Star Wars: Episode VII - The Force Awakens",
         "clue": "Released in the mid 2010s",
         "answer": 2015
-      },
-      {
+    },
+    {
         "title": "Star Wars: Episode VIII - The Last Jedi",
         "clue": "Released in the mid 2010s",
         "answer": 2017
-      },
-      {
+    },
+    {
         "title": "Star Wars: Episode IX - The Rise of Skywalker",
         "clue": "Released in the late 2010s",
         "answer": 2019
-      },
-      {
+    },
+    {
         "title": "Jurassic World",
         "clue": "Released in the mid 2010s",
         "answer": 2015
@@ -456,19 +426,14 @@
         "answer": 2001
     },
     {
-        "title": "The Fellowship of the Ring",
+        "title": "Lord of the Rings: The Fellowship of the Ring",
         "clue": "Released in the early 2000s",
         "answer": 2001
     },
     {
-        "title": "The Two Towers",
+        "title": "Lord of the Rings: The Two Towers",
         "clue": "Released in the early 2000s",
         "answer": 2002
-    },
-    {
-        "title": "The Return of the King",
-        "clue": "Released in the early 2000s",
-        "answer": 2003
     },
     {
         "title": "Harry Potter and the Philosopher's Stone",
@@ -609,120 +574,120 @@
         "title": "Toy Story",
         "clue": "Released in the mid-1990s",
         "answer": 1995
-        },
-        {
+    },
+    {
         "title": "Good Will Hunting",
         "clue": "Released in the late 1990s",
         "answer": 1997
-        },
-        {
+    },
+    {
         "title": "Scarface",
         "clue": "Released in the early 1980s",
         "answer": 1983
-        },
-        {
+    },
+    {
         "title": "Die Hard",
         "clue": "Released in the late 1980s",
         "answer": 1988
-        },
-        {
+    },
+    {
         "title": "Snatch",
         "clue": "Released in the late 1990s",
         "answer": 2000
-        },
-        {
+    },
+    {
         "title": "Indiana Jones and the Last Crusade",
         "clue": "Released in the late 1980s",
         "answer": 1989
-        },
-        {
+    },
+    {
         "title": "1917",
         "clue": "Released in the mid-2010s",
         "answer": 2019
-        },
-        {
+    },
+    {
         "title": "Batman Begins",
         "clue": "Released in the mid-2000s",
         "answer": 2005
-        },
-        {
+    },
+    {
         "title": "The Wolf of Wall Street",
         "clue": "Released in the early 2010s",
         "answer": 2013
-        },
-        {
+    },
+    {
         "title": "The Truman Show",
         "clue": "Released in the late 1990s",
         "answer": 1998
-        },
-        {
+    },
+    {
         "title": "A Beautiful Mind",
         "clue": "Released in the early 2000s",
         "answer": 2001
-        },
-        {
+    },
+    {
         "title": "Monty Python and the Holy Grail",
         "clue": "Released in the mid-1970s",
         "answer": 1975
-        },
-        {
+    },
+    {
         "title": "V for Vendetta",
         "clue": "Released in the mid-2000s",
         "answer": 2006
-        },
-        {
+    },
+    {
         "title": "Trainspotting",
         "clue": "Released in the mid-1990s",
         "answer": 1996
-        },
-        {
+    },
+    {
         "title": "Gran Torino",
         "clue": "Released in the late 2000s",
         "answer": 2008
-        },
-        {
+    },
+    {
         "title": "12 Years a Slave",
         "clue": "Released in the early 2010s",
         "answer": 2013
-        },
-        {
+    },
+    {
         "title": "Gone Girl",
         "clue": "Released in the mid-2010s",
         "answer": 2014
-        },
-        {
+    },
+    {
         "title": "Hacksaw Ridge",
         "clue": "Released in the mid-2010s",
         "answer": 2016
-        },
-        {
+    },
+    {
         "title": "Mad Max: Fury Road",
         "clue": "Released in the mid-2010s",
         "answer": 2015
-        },
-        {
+    },
+    {
         "title": "Dead Poets Society",
         "clue": "Released in the late 1980s",
         "answer": 1989
-        },
-        {
+    },
+    {
         "title": "Rush",
         "clue": "Released in the early 2010s",
         "answer": 2013
-        },
-        {
+    },
+    {
         "title": "Into the Wild",
         "clue": "Released in the mid-2000s",
         "answer": 2007
-        },
-        {
+    },
+    {
         "title": "The Incredibles",
         "clue": "Released in the mid-2000s",
         "answer": 2004
-        },
-        {
+    },
+    {
         "title": "Hachi: A Dog's Tale",
         "clue": "Released in the late 2000s",
         "answer": 2009
-        }
+    }
 ]
