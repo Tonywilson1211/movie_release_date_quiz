@@ -75,7 +75,7 @@ def get_user_answer():
                             "4-digit number. e.g. 2004.\n"
 
 
-def calculate_points(user_answer, correct_answer, clue_choice):
+def calculate_points(user_answer, correct_answer, clue_choice, name):
     """
     The user's answer is compared to the correct answer and the appropriate
     points are rewarded, along with a feedback message.
@@ -83,30 +83,31 @@ def calculate_points(user_answer, correct_answer, clue_choice):
     if user_answer == correct_answer:
         if clue_choice == 'N':
             points = 7
-            feedback = "\nYou got it! And you got 2 bonus "\
+            feedback = f"\nYou got it {name}! And you got 2 bonus "\
                        "points for not using a clue!\n"
         else:
             points = 5
-            feedback = "\nYou got it!"
+            feedback = f"\nYou got it {name}!"
     elif abs(user_answer - correct_answer) == 1:
         if clue_choice == 'N':
             points = 5
-            feedback = "\nClose, but not quite! But you do get 2 "\
+            feedback = f"\So close {name}, but not quite! But you do get 2 "\
                        "bonus points for not using a clue!\n"
         else:
             points = 3
-            feedback = "\nClose, but not quite!\n"
+            feedback = f"\nSo close {name}, but not quite!\n"
     elif abs(user_answer - correct_answer) == 2:
         if clue_choice == 'N':
             points = 3
-            feedback = "\nNot bad, but you can do better! But you do get 2 "\
+            feedback = f"\nNot bad {name}, but you can do better! "\
+                       "But you do get 2 "\
                        "bonus points for not using a clue!\n"
         else:
             points = 1
-            feedback = "\nNot bad, but you can do better!\n"
+            feedback = f"\nNot bad {name}, but you can do better!\n"
     else:
         points = 0
-        feedback = "\nSorry, that's not correct.\n"
+        feedback = f"\nSorry {name}, that's not correct.\n"
     return points, feedback
 
 
@@ -146,7 +147,7 @@ def end_game_get_user_choice():
     return choice
 
 
-def game_summary(score, total_score):
+def game_summary(score, total_score, name):
     """
     Shows user their total score at the end of the game.
     """
@@ -156,13 +157,13 @@ def game_summary(score, total_score):
     print("*                  RESULTS!                       *")
     print("*          Let's see how you got on!              *")
     print("***************************************************")
-    print("\nCongratulations you have completed the quiz!")
+    print(f"\nCongratulations {name}, you have completed the quiz!")
     print("Let's take a look at how you got on....")
     percentage = round(score / total_score * 100)
     print(f"\nYour final score is {score} out of a "
           f"posible {total_score}. That's {percentage}%!\n")
     print("Thanks for taking the time to play our "
-          "quiz, we hope you have fun!\n")
+          f"quiz {name}, we hope you had fun!\n")
 
 
 def play_game():
@@ -189,7 +190,7 @@ def play_game():
         # get answer from user
         answer = get_user_answer()
         points, feedback = calculate_points(
-            answer, question['answer'], clue_choice)
+            answer, question['answer'], clue_choice, name)
         print(feedback)
         if answer == question['answer']:
             print(
@@ -202,7 +203,7 @@ def play_game():
         print(f"So far you have scored {score} points\n")
         get_user_choice()
         if i == num_of_questions - 1:
-            game_summary(score, total_score)
+            game_summary(score, total_score, name)
             end_game_get_user_choice()
 
 
@@ -213,30 +214,41 @@ def display_main_menu():
     os.system('clear')
     print("***************************************************")
     print("*          MOVIE RELEASE-DATE QUIZ                *")
-    print("*        Movies from the 60s to 2022              *")
+    print("*       Movies from the 1960s to 2022             *")
     print("*          How many will you know!?               *")
     print("***************************************************")
 
     # loop until user chooses to exit
+    menu_displayed = False
+    select_option_displayed = False
+    invalid_choice_displayed = False
+
     while True:
-        print("\nMain Menu:\n")
-        print("1. Start game")
-        print("2. Quiz Guide")
-        print("3. About the Developer")
-        print("4. Exit program\n")
+        if not menu_displayed:
+            print("\nMain Menu:\n")
+            print("1. Start game")
+            print("2. Quiz Guide")
+            print("3. About the Developer")
+            print("4. Exit program\n")
+            menu_displayed = True
 
         # get user input
-        choice = input("Select Option (1-4): ")
+        if not select_option_displayed:
+            choice = input("Select Option (1-4): ")
+            select_option_displayed = True
 
         # handle user choice
         if choice == '1':
             print("Starting game...good luck!")
             play_game()
+            menu_displayed = False
         elif choice == '2':
             print("Opening Instructions...")
             display_instructions()
+            menu_displayed = False
         elif choice == '3':
             print("Displaying help...")
+            menu_displayed = False
         elif choice == '4':
             print("Exiting program...")
             exit()
@@ -266,7 +278,6 @@ def display_instructions():
           " total score so far. Once you have answered 5 questions"
           " you will be taken to the quiz summary screen and you can review"
           " how well you did.\n")
-
     print("\n\n******** HOW CLUES WORK ********\n\n")
     print("Before you guess the year the movie was released"
           " you will be asked if you want to see a clue."
@@ -293,10 +304,19 @@ def display_instructions():
             break
 
 
-def landing_page():
-    name = input("Hello there! Great to see you here with us today."
-                 "What's your name? ")
-    print(f"Welcome {name}!")
+def get_name():
+    name = input("Hello there!\nWelcome to the Movie Release Date Quiz!"
+                 " What is your name? ")
+    return name
+
+
+def landing_page(name):
+    print("***************************************************")
+    print("*              WELCOME TO THE MOVIE               *")
+    print("*                  RELEASE DATE                   *")
+    print("*                     QUIZ!                       *")
+    print("***************************************************")
+    print(f"\nWelcome {name}!")
     while True:
         choice = input("\nEnter '1' to head over to the main menu: ")
         if choice.lower() == '1':
@@ -304,4 +324,5 @@ def landing_page():
             break
 
 
-landing_page()
+name = get_name()
+landing_page(name)
