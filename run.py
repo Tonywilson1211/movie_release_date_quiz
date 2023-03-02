@@ -18,11 +18,20 @@ def print_question_header(question_num):
     Print movie name and question number out of 10.
     """
     os.system('clear')
-    print("***************************************************")
-    print("*                Guess The Year                   *")
-    print("*                   the Movie                     *")
-    print("*                 was Released!                   *")
-    print("***************************************************\n")
+    print(r'''
+           ██████╗ ██╗   ██╗███████╗███████╗███████╗
+          ██╔════╝ ██║   ██║██╔════╝██╔════╝██╔════╝
+          ██║  ███╗██║   ██║█████╗  ███████╗███████╗
+          ██║   ██║██║   ██║██╔══╝  ╚════██║╚════██║
+          ╚██████╔╝╚██████╔╝███████╗███████║███████║
+           ╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚══════╝
+████████╗██╗  ██╗███████╗    ██╗   ██╗███████╗ █████╗ ██████╗
+╚══██╔══╝██║  ██║██╔════╝    ╚██╗ ██╔╝██╔════╝██╔══██╗██╔══██╗
+   ██║   ███████║█████╗       ╚████╔╝ █████╗  ███████║██████╔╝
+   ██║   ██╔══██║██╔══╝        ╚██╔╝  ██╔══╝  ██╔══██║██╔══██╗
+   ██║   ██║  ██║███████╗       ██║   ███████╗██║  ██║██║  ██║
+   ╚═╝   ╚═╝  ╚═╝╚══════╝       ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
+''')
     print(f"\n{'*' * 17} Question {question_num+1} of 5 {'*' * 18}")
 
 
@@ -91,7 +100,7 @@ def calculate_points(user_answer, correct_answer, clue_choice, name):
     elif abs(user_answer - correct_answer) == 1:
         if clue_choice == 'N':
             points = 5
-            feedback = f"\So close {name}, but not quite! But you do get 2 "\
+            feedback = f"So close {name}, but not quite! But you do get 2 "\
                        "bonus points for not using a clue!\n"
         else:
             points = 3
@@ -152,11 +161,14 @@ def game_summary(score, total_score, name):
     Shows user their total score at the end of the game.
     """
     os.system('clear')
-    print("***************************************************")
-    print("*          MOVIE RELEASE-DATE QUIZ                *")
-    print("*                  RESULTS!                       *")
-    print("*          Let's see how you got on!              *")
-    print("***************************************************")
+    print(r'''
+    ██████╗ ███████╗███████╗██╗   ██╗██╗  ████████╗███████╗██╗
+    ██╔══██╗██╔════╝██╔════╝██║   ██║██║  ╚══██╔══╝██╔════╝██║
+    ██████╔╝█████╗  ███████╗██║   ██║██║     ██║   ███████╗██║
+    ██╔══██╗██╔══╝  ╚════██║██║   ██║██║     ██║   ╚════██║╚═╝
+    ██║  ██║███████╗███████║╚██████╔╝███████╗██║   ███████║██╗
+    ╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚══════╝╚═╝   ╚══════╝╚═╝
+    ''')
     print(f"\nCongratulations {name}, you have completed the quiz!")
     print("Let's take a look at how you got on....")
     percentage = round(score / total_score * 100)
@@ -166,7 +178,7 @@ def game_summary(score, total_score, name):
           f"quiz {name}, we hope you had fun!\n")
 
 
-def play_game():
+def play_game(name):
     """
     This function runs the game by loading questions from a JSON file,
     asking the user to guess the year a movie was released,
@@ -201,27 +213,41 @@ def play_game():
         print(f"\nYou scored {points} points for this question.")
         score += points
         print(f"So far you have scored {score} points\n")
-        get_user_choice()
+        choice = get_user_choice()
+        if choice == '1':
+            continue
+        elif choice == 'M':
+            display_main_menu(name)
+        elif choice == 'E':
+            print("Exiting program...We hope to see you again soon!")
+            exit()
+
         if i == num_of_questions - 1:
             game_summary(score, total_score, name)
-            end_game_get_user_choice()
+            end_choice = end_game_get_user_choice()
+            if end_choice == 'M':
+                display_main_menu(name)
+            elif end_choice == 'E':
+                print("Exiting program...We hope to see you again soon!")
+                exit()
 
 
-def display_main_menu():
+def display_main_menu(name):
     """
     Display main menu
     """
     os.system('clear')
-    print("***************************************************")
-    print("*          MOVIE RELEASE-DATE QUIZ                *")
-    print("*       Movies from the 1960s to 2022             *")
-    print("*          How many will you know!?               *")
-    print("***************************************************")
+    print(r'''
+███╗   ███╗ █████╗ ██╗███╗   ██╗    ███╗   ███╗███████╗███╗   ██╗██╗   ██╗
+████╗ ████║██╔══██╗██║████╗  ██║    ████╗ ████║██╔════╝████╗  ██║██║   ██║
+██╔████╔██║███████║██║██╔██╗ ██║    ██╔████╔██║█████╗  ██╔██╗ ██║██║   ██║
+██║╚██╔╝██║██╔══██║██║██║╚██╗██║    ██║╚██╔╝██║██╔══╝  ██║╚██╗██║██║   ██║
+██║ ╚═╝ ██║██║  ██║██║██║ ╚████║    ██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝
+╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝    ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝
+    ''')
 
     # loop until user chooses to exit
     menu_displayed = False
-    select_option_displayed = False
-    invalid_choice_displayed = False
 
     while True:
         if not menu_displayed:
@@ -233,39 +259,38 @@ def display_main_menu():
             menu_displayed = True
 
         # get user input
-        if not select_option_displayed:
-            choice = input("Select Option (1-4): ")
-            select_option_displayed = True
+        choice = input("Select Option (1-4): ")
 
         # handle user choice
         if choice == '1':
-            print("Starting game...good luck!")
-            play_game()
+            play_game(name)
             menu_displayed = False
         elif choice == '2':
-            print("Opening Instructions...")
-            display_instructions()
+            display_instructions(name)
             menu_displayed = False
         elif choice == '3':
-            print("Displaying help...")
             menu_displayed = False
         elif choice == '4':
-            print("Exiting program...")
+            print("Exiting program...We hope to see you again soon!")
             exit()
         else:
             print("Invalid choice, please enter a number from 1 to 4.")
 
 
-def display_instructions():
+def display_instructions(name):
     """
     Displays instructions on how to play the game
     """
     os.system('clear')
-    print("***************************************************")
-    print("*                                                 *")
-    print("*                QUIZ GUIDE                       *")
-    print("*                                                 *")
-    print("***************************************************")
+    print(r'''
+
+ ██████╗ ██╗   ██╗██╗███████╗     ██████╗ ██╗   ██╗██╗██████╗ ███████╗
+██╔═══██╗██║   ██║██║╚══███╔╝    ██╔════╝ ██║   ██║██║██╔══██╗██╔════╝
+██║   ██║██║   ██║██║  ███╔╝     ██║  ███╗██║   ██║██║██║  ██║█████╗
+██║▄▄ ██║██║   ██║██║ ███╔╝      ██║   ██║██║   ██║██║██║  ██║██╔══╝
+╚██████╔╝╚██████╔╝██║███████╗    ╚██████╔╝╚██████╔╝██║██████╔╝███████╗
+ ╚══▀▀═╝  ╚═════╝ ╚═╝╚══════╝     ╚═════╝  ╚═════╝ ╚═╝╚═════╝ ╚══════╝
+    ''')
     print("\n\n******** THE AIM OF THE GAME! ********\n\n")
     print("The aim of the game is to correctly guess the release date"
           " of the movie. Simple! (if you know the answer that is...)")
@@ -300,29 +325,42 @@ def display_instructions():
     while True:
         choice = input("\nEnter '1' to return to the main menu: ")
         if choice.lower() == '1':
-            display_main_menu()  # display the main menu again
+            display_main_menu(name)  # display the main menu again
             break
 
 
-def get_name():
-    name = input("Hello there!\nWelcome to the Movie Release Date Quiz!"
-                 " What is your name? ")
+def landing_page():
+    print(r'''
+████████╗██╗  ██╗███████╗    ███╗   ███╗ ██████╗ ██╗   ██╗██╗███████╗
+╚══██╔══╝██║  ██║██╔════╝    ████╗ ████║██╔═══██╗██║   ██║██║██╔════╝
+   ██║   ███████║█████╗      ██╔████╔██║██║   ██║██║   ██║██║█████╗
+   ██║   ██╔══██║██╔══╝      ██║╚██╔╝██║██║   ██║╚██╗ ██╔╝██║██╔══╝
+   ██║   ██║  ██║███████╗    ██║ ╚═╝ ██║╚██████╔╝ ╚████╔╝ ██║███████╗
+   ╚═╝   ╚═╝  ╚═╝╚══════╝    ╚═╝     ╚═╝ ╚═════╝   ╚═══╝  ╚═╝╚══════╝
+                     ██████╗ ██╗   ██╗██╗███████╗██╗
+                    ██╔═══██╗██║   ██║██║╚══███╔╝██║
+                    ██║   ██║██║   ██║██║  ███╔╝ ██║
+                    ██║▄▄ ██║██║   ██║██║ ███╔╝  ╚═╝
+                    ╚██████╔╝╚██████╔╝██║███████╗██╗
+                     ╚══▀▀═╝  ╚═════╝ ╚═╝╚══════╝╚═╝
+    ''')
+    name = input("Hello and welcome to the Movie Quiz!\n"
+                 "The Quiz where your knowledge of movies "
+                 "and when they were released is put to the test!\n"
+                 "What is your name? ").capitalize()
+    print(f"\nWelcome {name}!\n"
+          "We have an impressive archive of over 135 "
+          f"movies to test your knowledge {name},"
+          " so with 5 questions per quiz,\nyou are sure to have a unique"
+          " experience each time you play")
+    while True:
+        choice = input("\nWhen you are ready,"
+                       " press '1' then 'enter' to head over to the"
+                       " main menu: ")
+        if choice.lower() == '1':
+            display_main_menu(name)  # display the main menu again
+            break
     return name
 
 
-def landing_page(name):
-    print("***************************************************")
-    print("*              WELCOME TO THE MOVIE               *")
-    print("*                  RELEASE DATE                   *")
-    print("*                     QUIZ!                       *")
-    print("***************************************************")
-    print(f"\nWelcome {name}!")
-    while True:
-        choice = input("\nEnter '1' to head over to the main menu: ")
-        if choice.lower() == '1':
-            display_main_menu()  # display the main menu again
-            break
-
-
-name = get_name()
-landing_page(name)
+landing_page()
