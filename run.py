@@ -1,6 +1,14 @@
 import json
 import random
 import os
+import time
+
+
+def print_slowly(text):
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(0.025)
+    print()
 
 
 def load_questions():
@@ -18,7 +26,7 @@ def print_question_header(question_num):
     Print movie name and question number out of 10.
     """
     os.system('clear')
-    print(r'''
+    print('''
            ██████╗ ██╗   ██╗███████╗███████╗███████╗
           ██╔════╝ ██║   ██║██╔════╝██╔════╝██╔════╝
           ██║  ███╗██║   ██║█████╗  ███████╗███████╗
@@ -31,7 +39,7 @@ def print_question_header(question_num):
    ██║   ██╔══██║██╔══╝        ╚██╔╝  ██╔══╝  ██╔══██║██╔══██╗
    ██║   ██║  ██║███████╗       ██║   ███████╗██║  ██║██║  ██║
    ╚═╝   ╚═╝  ╚═╝╚══════╝       ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
-''')
+    ''')
     print(f"\n{'*' * 17} Question {question_num+1} of 5 {'*' * 18}")
 
 
@@ -56,7 +64,7 @@ def print_question_clue(question):
     """
     Prints the clue for the user when they ask for a clue.
     """
-    print(f"\nClue: {question['clue']}\n\n\n")
+    print_slowly(f"\nClue: {question['clue']}\n\n\n")
 
 
 def get_user_answer():
@@ -161,7 +169,7 @@ def game_summary(score, total_score, name):
     Shows user their total score at the end of the game.
     """
     os.system('clear')
-    print(r'''
+    print('''
     ██████╗ ███████╗███████╗██╗   ██╗██╗  ████████╗███████╗██╗
     ██╔══██╗██╔════╝██╔════╝██║   ██║██║  ╚══██╔══╝██╔════╝██║
     ██████╔╝█████╗  ███████╗██║   ██║██║     ██║   ███████╗██║
@@ -169,12 +177,12 @@ def game_summary(score, total_score, name):
     ██║  ██║███████╗███████║╚██████╔╝███████╗██║   ███████║██╗
     ╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚══════╝╚═╝   ╚══════╝╚═╝
     ''')
-    print(f"\nCongratulations {name}, you have completed the quiz!")
-    print("Let's take a look at how you got on....")
+    print_slowly(f"\nCongratulations {name}, you have completed the quiz!")
+    print_slowly("Let's take a look at how you got on....")
     percentage = round(score / total_score * 100)
-    print(f"\nYour final score is {score} out of a "
+    print_slowly(f"\nYour final score is {score} out of a "
           f"posible {total_score}. That's {percentage}%!\n")
-    print("Thanks for taking the time to play our "
+    print_slowly("Thanks for taking the time to play our "
           f"quiz {name}, we hope you had fun!\n")
 
 
@@ -193,7 +201,7 @@ def play_game(name):
     for i, question in enumerate(questions[:num_of_questions]):
         print_question_header(i)
         title = question['title'].upper()
-        print(f"\nMovie Title:   {title}\n")
+        print_slowly(f"\nMovie Title:   {title}\n")
         print("")
         # get clue choice from user
         clue_choice = get_clue_choice()
@@ -205,14 +213,14 @@ def play_game(name):
             answer, question['answer'], clue_choice, name)
         print(feedback)
         if answer == question['answer']:
-            print(
+            print_slowly(
                 f"{question['title']} was indeed "
                 f"released in {question['answer']}")
         else:
-            print(f"{question['title']} was released in {question['answer']}")
-        print(f"\nYou scored {points} points for this question.")
+            print_slowly(f"{question['title']} was released in {question['answer']}")
+        print_slowly(f"\nYou scored {points} points for this question.")
         score += points
-        print(f"So far you have scored {score} points\n")
+        print_slowly(f"So far you have scored {score} points\n")
         choice = get_user_choice()
         if choice == '1':
             continue
@@ -237,7 +245,7 @@ def display_main_menu(name):
     Display main menu
     """
     os.system('clear')
-    print(r'''
+    print('''
 ███╗   ███╗ █████╗ ██╗███╗   ██╗    ███╗   ███╗███████╗███╗   ██╗██╗   ██╗
 ████╗ ████║██╔══██╗██║████╗  ██║    ████╗ ████║██╔════╝████╗  ██║██║   ██║
 ██╔████╔██║███████║██║██╔██╗ ██║    ██╔████╔██║█████╗  ██╔██╗ ██║██║   ██║
@@ -251,11 +259,11 @@ def display_main_menu(name):
 
     while True:
         if not menu_displayed:
-            print("\nMain Menu:\n")
-            print("1. Start game")
-            print("2. Quiz Guide")
-            print("3. About the Developer")
-            print("4. Exit program\n")
+            print_slowly("\nMain Menu:\n")
+            print_slowly("1. Start game")
+            print_slowly("2. Quiz Guide")
+            print_slowly("3. About the Developer")
+            print_slowly("4. Exit program\n")
             menu_displayed = True
 
         # get user input
@@ -282,7 +290,7 @@ def display_instructions(name):
     Displays instructions on how to play the game
     """
     os.system('clear')
-    print(r'''
+    print('''
 
  ██████╗ ██╗   ██╗██╗███████╗     ██████╗ ██╗   ██╗██╗██████╗ ███████╗
 ██╔═══██╗██║   ██║██║╚══███╔╝    ██╔════╝ ██║   ██║██║██╔══██╗██╔════╝
@@ -291,10 +299,10 @@ def display_instructions(name):
 ╚██████╔╝╚██████╔╝██║███████╗    ╚██████╔╝╚██████╔╝██║██████╔╝███████╗
  ╚══▀▀═╝  ╚═════╝ ╚═╝╚══════╝     ╚═════╝  ╚═════╝ ╚═╝╚═════╝ ╚══════╝
     ''')
-    print("\n\n******** THE AIM OF THE GAME! ********\n\n")
+    print_slowly("\n\n******** THE AIM OF THE GAME! ********\n\n")
     print("The aim of the game is to correctly guess the release date"
           " of the movie. Simple! (if you know the answer that is...)")
-    print("\n\n******** THE QUIZ FORMAT ********\n\n")
+    print_slowly("\n\n******** THE QUIZ FORMAT ********\n\n")
     print("When the quiz first begins you will see the name of the movie,"
           " and you will be invited to choose to see a clue or not. Once"
           " you have made your choice you will be invited to guess the"
@@ -303,14 +311,14 @@ def display_instructions(name):
           " total score so far. Once you have answered 5 questions"
           " you will be taken to the quiz summary screen and you can review"
           " how well you did.\n")
-    print("\n\n******** HOW CLUES WORK ********\n\n")
+    print_slowly("\n\n******** HOW CLUES WORK ********\n\n")
     print("Before you guess the year the movie was released"
           " you will be asked if you want to see a clue."
           " You'll need to enter either 'Y' (yes) or 'N' (no)")
     print("\nAll clues give you a good hint as to when the movie"
           " was released. For example, if a movie was released in"
           " 2002 then the clue would be 'Released in early 2000s'")
-    print("\n\n******** HOW THE POINTS ARE CALCULATED ********\n\n")
+    print_slowly("\n\n******** HOW THE POINTS ARE CALCULATED ********\n\n")
     print("If you enter the correct answer, you are rewarded 5 points.\n")
     print("If you are 1 year off the correct answer, you are rewarded"
           " with 3 points.\n")
@@ -330,33 +338,39 @@ def display_instructions(name):
 
 
 def landing_page():
-    print(r'''
-████████╗██╗  ██╗███████╗    ███╗   ███╗ ██████╗ ██╗   ██╗██╗███████╗
-╚══██╔══╝██║  ██║██╔════╝    ████╗ ████║██╔═══██╗██║   ██║██║██╔════╝
-   ██║   ███████║█████╗      ██╔████╔██║██║   ██║██║   ██║██║█████╗
-   ██║   ██╔══██║██╔══╝      ██║╚██╔╝██║██║   ██║╚██╗ ██╔╝██║██╔══╝
-   ██║   ██║  ██║███████╗    ██║ ╚═╝ ██║╚██████╔╝ ╚████╔╝ ██║███████╗
-   ╚═╝   ╚═╝  ╚═╝╚══════╝    ╚═╝     ╚═╝ ╚═════╝   ╚═══╝  ╚═╝╚══════╝
-                     ██████╗ ██╗   ██╗██╗███████╗██╗
-                    ██╔═══██╗██║   ██║██║╚══███╔╝██║
-                    ██║   ██║██║   ██║██║  ███╔╝ ██║
-                    ██║▄▄ ██║██║   ██║██║ ███╔╝  ╚═╝
-                    ╚██████╔╝╚██████╔╝██║███████╗██╗
-                     ╚══▀▀═╝  ╚═════╝ ╚═╝╚══════╝╚═╝
+    print('''
+    ████████╗██╗  ██╗███████╗    ███╗   ███╗ ██████╗ ██╗   ██╗██╗███████╗
+    ╚══██╔══╝██║  ██║██╔════╝    ████╗ ████║██╔═══██╗██║   ██║██║██╔════╝
+       ██║   ███████║█████╗      ██╔████╔██║██║   ██║██║   ██║██║█████╗
+       ██║   ██╔══██║██╔══╝      ██║╚██╔╝██║██║   ██║╚██╗ ██╔╝██║██╔══╝
+       ██║   ██║  ██║███████╗    ██║ ╚═╝ ██║╚██████╔╝ ╚████╔╝ ██║███████╗
+       ╚═╝   ╚═╝  ╚═╝╚══════╝    ╚═╝     ╚═╝ ╚═════╝   ╚═══╝  ╚═╝╚══════╝
+                         ██████╗ ██╗   ██╗██╗███████╗██╗
+                        ██╔═══██╗██║   ██║██║╚══███╔╝██║
+                        ██║   ██║██║   ██║██║  ███╔╝ ██║
+                        ██║▄▄ ██║██║   ██║██║ ███╔╝  ╚═╝
+                        ╚██████╔╝╚██████╔╝██║███████╗██╗
+                         ╚══▀▀═╝  ╚═════╝ ╚═╝╚══════╝╚═╝
     ''')
-    name = input("Hello and welcome to the Movie Quiz!\n"
-                 "The Quiz where your knowledge of movies "
-                 "and when they were released is put to the test!\n"
-                 "What is your name? ").capitalize()
-    print(f"\nWelcome {name}!\n"
-          "We have an impressive archive of over 135 "
-          f"movies to test your knowledge {name},"
-          " so with 5 questions per quiz,\nyou are sure to have a unique"
-          " experience each time you play")
+    print("Hello and welcome to The Movie Quiz!".center(80))
+    print("")
+    print_slowly("The Quiz where your knowledge of movies and,".center(80))
+    print_slowly("when they were released is put to the test!".center(80))
+    print("")
+    print("What is your name? ".center(80))
+    name = input("\n ".center(76)).capitalize()
+    print("")
+    print(f"Welcome {name}!".center(80))
+    print("")
+    print_slowly("We have an impressive archive of over 135 movies".center(80))
+    print_slowly(f"to test your knowledge {name}, so with 5 ".center(80))
+    print_slowly("questions per quiz, you are sure to have ".center(80))
+    print_slowly("a varried experience, everytime you play!".center(80))
+
     while True:
-        choice = input("\nWhen you are ready,"
+        choice = input(f"\n{name}, when you are ready,"
                        " press '1' then 'enter' to head over to the"
-                       " main menu: ")
+                       " main menu: ".center(80))
         if choice.lower() == '1':
             display_main_menu(name)  # display the main menu again
             break
