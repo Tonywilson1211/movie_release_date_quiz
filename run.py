@@ -7,7 +7,7 @@ import time
 def print_slowly(text):
     for char in text:
         print(char, end='', flush=True)
-        time.sleep(0.00)
+        time.sleep(0.025)
     print()
 
 
@@ -221,15 +221,6 @@ def play_game(name):
         print_slowly(f"\nYou scored {points} points for this question.")
         score += points
         print_slowly(f"So far you have scored {score} points\n")
-        choice = get_user_choice()
-        if choice == '1':
-            continue
-        elif choice == 'M':
-            display_main_menu(name)
-        elif choice == 'E':
-            print("Exiting program...We hope to see you again soon!")
-            exit()
-
         if i == num_of_questions - 1:
             game_summary(score, total_score, name)
             end_choice = end_game_get_user_choice()
@@ -238,6 +229,14 @@ def play_game(name):
             elif end_choice == 'E':
                 print("Exiting program...We hope to see you again soon!")
                 exit()
+        choice = get_user_choice()
+        if choice == '1':
+            continue
+        elif choice == 'M':
+            display_main_menu(name)
+        elif choice == 'E':
+            print("Exiting program...We hope to see you again soon!")
+            exit()
 
 
 def display_main_menu(name):
@@ -299,11 +298,11 @@ def display_instructions(name):
 ╚██████╔╝╚██████╔╝██║███████╗    ╚██████╔╝╚██████╔╝██║██████╔╝███████╗
  ╚══▀▀═╝  ╚═════╝ ╚═╝╚══════╝     ╚═════╝  ╚═════╝ ╚═╝╚═════╝ ╚══════╝
     ''')
-    print_slowly("******** THE AIM OF THE GAME ********\n".center(80))
+    print_slowly("************* THE AIM OF THE GAME ************\n".center(80))
     print("The aim of the game is to correctly guess the".center(80))
     print("release date of the movie.".center(80))
     print("Simple! (if you know the answer that is...)\n\n".center(80))
-    print_slowly("******** THE QUIZ FORMAT ********\n".center(80))
+    print_slowly("*************** THE QUIZ FORMAT **************\n".center(80))
     print("When the quiz first begins you will see the name".center(80))
     print("of the movie. You will be invited to choose".center(80))
     print("to see a clue or not. Once you have made your ".center(80))
@@ -314,14 +313,14 @@ def display_instructions(name):
     print("answered 5 questions you will be taken to".center(80))
     print("the quiz summary screen and you can review".center(80))
     print("how well you did.\n\n".center(80))
-    print_slowly("******** HOW CLUES WORK ********\n".center(80))
+    print_slowly("*************** HOW CLUES WORK ***************\n".center(80))
     print("Before you guess the year the movie was released".center(80))
     print("you will be asked if you want to see a clue.".center(80))
     print("You'll need to enter either 'Y' (yes) or 'N' (no)\n".center(80))
     print("All clues give you a good hint as to when the movie".center(80))
     print("was released. For example, if a movie was released in".center(80))
     print("2002 the clue would be 'Released in early 2000s'\n\n".center(80))
-    print_slowly("******* HOW THE POINTS ARE CALCULATED *******\n".center(80))
+    print_slowly("******* HOW THE POINTS ARE CALCULATED ********\n".center(80))
     print("Enter the correct answer, you are receive 5 points.\n".center(80))
     print("If you are 1 year off the correct answer, you receive".center(80))
     print(" with 3 points.\n".center(80))
