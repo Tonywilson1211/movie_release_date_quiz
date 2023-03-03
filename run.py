@@ -181,9 +181,9 @@ def game_summary(score, total_score, name):
     print_slowly("Let's take a look at how you got on....")
     percentage = round(score / total_score * 100)
     print_slowly(f"\nYour final score is {score} out of a "
-          f"posible {total_score}. That's {percentage}%!\n")
+                 f"posible {total_score}. That's {percentage}%!\n")
     print_slowly("Thanks for taking the time to play our "
-          f"quiz {name}, we hope you had fun!\n")
+                 f"quiz {name}, we hope you had fun!\n")
 
 
 def play_game(name):
@@ -217,7 +217,8 @@ def play_game(name):
                 f"{question['title']} was indeed "
                 f"released in {question['answer']}")
         else:
-            print_slowly(f"{question['title']} was released in {question['answer']}")
+            print_slowly(f"{question['title']} was released"
+                         " in {question['answer']}")
         print_slowly(f"\nYou scored {points} points for this question.")
         score += points
         print_slowly(f"So far you have scored {score} points\n")
@@ -299,27 +300,30 @@ def display_instructions(name):
 ╚██████╔╝╚██████╔╝██║███████╗    ╚██████╔╝╚██████╔╝██║██████╔╝███████╗
  ╚══▀▀═╝  ╚═════╝ ╚═╝╚══════╝     ╚═════╝  ╚═════╝ ╚═╝╚═════╝ ╚══════╝
     ''')
-    print_slowly("\n\n******** THE AIM OF THE GAME! ********\n\n")
-    print("The aim of the game is to correctly guess the release date"
-          " of the movie. Simple! (if you know the answer that is...)")
-    print_slowly("\n\n******** THE QUIZ FORMAT ********\n\n")
-    print("When the quiz first begins you will see the name of the movie,"
-          " and you will be invited to choose to see a clue or not. Once"
-          " you have made your choice you will be invited to guess the"
-          " answer. Once you have entered your answer you will see"
-          " if you were correct, the number of points scored, and your"
-          " total score so far. Once you have answered 5 questions"
-          " you will be taken to the quiz summary screen and you can review"
-          " how well you did.\n")
-    print_slowly("\n\n******** HOW CLUES WORK ********\n\n")
-    print("Before you guess the year the movie was released"
+    print_slowly("******** THE AIM OF THE GAME! ********".center(80))
+    print("The aim of the game is to correctly guess the".center(80))
+    print("release date of the movie.".center(80))
+    print("Simple! (if you know the answer that is...)\n\n".center(80))
+    print_slowly("******** THE QUIZ FORMAT ********".center(80))
+    print("When the quiz first begins you will see the name".center(80))
+    print("of the movie. You will be invited to choose".center(80))
+    print("to see a clue or not. Once you have made your ".center(80))
+    print("choice you will be invited to guess the answer.".center(80))
+    print("Once you have entered your answer you will see".center(80))
+    print("if you were correct, the number of points scored,".center(80))
+    print("and your total score so far. Once you have".center(80))
+    print("answered 5 questions you will be taken to".center(80))
+    print("the quiz summary screen and you can review".center(80))
+    print("how well you did.\n\n".center(80))
+    print_slowly("******** HOW CLUES WORK ********".center(80))
+    print("\n\nBefore you guess the year the movie was released"
           " you will be asked if you want to see a clue."
           " You'll need to enter either 'Y' (yes) or 'N' (no)")
     print("\nAll clues give you a good hint as to when the movie"
           " was released. For example, if a movie was released in"
-          " 2002 then the clue would be 'Released in early 2000s'")
-    print_slowly("\n\n******** HOW THE POINTS ARE CALCULATED ********\n\n")
-    print("If you enter the correct answer, you are rewarded 5 points.\n")
+          " 2002 then the clue would be 'Released in early 2000s'\n\n")
+    print_slowly("******** HOW THE POINTS ARE CALCULATED ********".center(80))
+    print("\n\nIf you enter the correct answer, you are rewarded 5 points.\n")
     print("If you are 1 year off the correct answer, you are rewarded"
           " with 3 points.\n")
     print("If you are 2 years off the correct answer, you are rewarded"
@@ -363,13 +367,13 @@ def landing_page():
     print(f"Welcome {name}!".center(80))
     print("")
     print_slowly("We have an impressive archive of over 135 movies".center(80))
-    print_slowly(f"to test your knowledge {name}, so with 5 ".center(80))
-    print_slowly("questions per quiz, you are sure to have ".center(80))
-    print_slowly("a varried experience, everytime you play!".center(80))
+    print_slowly("to test your knowledge, so with 5 questions ".center(80))
+    print_slowly("per quiz, you are sure to have a varried".center(80))
+    print_slowly("experience, everytime you play!".center(80))
 
     while True:
-        choice = input(f"\n{name}, when you are ready,"
-                       " press '1' then 'enter' to head over to the"
+        choice = input(f"\n{name}, when ready,"
+                       " press '1' then 'Enter' to head over to the"
                        " main menu: ".center(80))
         if choice.lower() == '1':
             display_main_menu(name)  # display the main menu again
