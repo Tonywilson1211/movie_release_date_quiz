@@ -299,12 +299,22 @@ def display_instructions(name):
     print("If you guess within 2 years of the release date and".center(80))
     print("don't use a clue, you receive an additional 2 points.\n".center(80))
     print("You will be asked 5 questions, so the maximum".center(80))
-    print("possible score is 35 points.".center(80))
+    print("possible score is 35 points.\n".center(80))
+    choice = ""
+    nav.main_menu_nav(name, display_main_menu, choice)
+
+
+def get_user_name():
+    """
+    Get user name
+    """
     while True:
-        choice = input("\nEnter '1' to return to the main menu: ")
-        if choice.lower() == '1':
-            display_main_menu(name)  # display the main menu again
+        name = input("\n ".center(74)).capitalize()
+        if len(name) > 1 and len(name) < 9:
             break
+        else:
+            print("Name should be between 1 and 9 characters long.".center(80))
+    return name
 
 
 def landing_page():
@@ -318,7 +328,7 @@ def landing_page():
     print_slowly("when they were released is put to the test!".center(80))
     print("")
     print("What is your name? ".center(80))
-    name = input("\n ".center(76)).capitalize()
+    name = get_user_name()
     print("")
     print(f"Welcome {name}!".center(80))
     print("")
@@ -326,11 +336,8 @@ def landing_page():
     print_slowly("to test your knowledge, so with 5 questions ".center(80))
     print_slowly("per quiz, you are sure to have a varried".center(80))
     print_slowly("experience, everytime you play!\n".center(80))
-
     choice = ""
-    nav.landing_page_nav(name, display_main_menu, choice)
-
-    return name
+    nav.main_menu_nav(name, display_main_menu, choice)
 
 
 def display_about_developer(name):
@@ -348,12 +355,9 @@ def display_about_developer(name):
     print("GitHub Repository".center(80))
     print("https://github.com/Tonywilson1211/TBD".center(80))
     print("")
-    print("Thank you for taking the time to look at my project".center(80))
-    while True:
-        choice = input("\nEnter '1' to return to the main menu: ")
-        if choice.lower() == '1':
-            display_main_menu(name)  # display the main menu again
-            break
+    print("Thank you for taking the time to look at my project\n".center(80))
+    choice = ""
+    nav.main_menu_nav(name, display_main_menu, choice)
 
 
 landing_page()
