@@ -2,12 +2,14 @@ import json
 import random
 import os
 import time
+import logos
+import nav
 
 
 def print_slowly(text):
     for char in text:
         print(char, end='', flush=True)
-        time.sleep(0.025)
+        time.sleep(0.005)
     print()
 
 
@@ -26,20 +28,7 @@ def print_question_header(question_num):
     Print movie name and question number out of 10.
     """
     os.system('clear')
-    print('''
-           ██████╗ ██╗   ██╗███████╗███████╗███████╗
-          ██╔════╝ ██║   ██║██╔════╝██╔════╝██╔════╝
-          ██║  ███╗██║   ██║█████╗  ███████╗███████╗
-          ██║   ██║██║   ██║██╔══╝  ╚════██║╚════██║
-          ╚██████╔╝╚██████╔╝███████╗███████║███████║
-           ╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚══════╝
-████████╗██╗  ██╗███████╗    ██╗   ██╗███████╗ █████╗ ██████╗
-╚══██╔══╝██║  ██║██╔════╝    ╚██╗ ██╔╝██╔════╝██╔══██╗██╔══██╗
-   ██║   ███████║█████╗       ╚████╔╝ █████╗  ███████║██████╔╝
-   ██║   ██╔══██║██╔══╝        ╚██╔╝  ██╔══╝  ██╔══██║██╔══██╗
-   ██║   ██║  ██║███████╗       ██║   ███████╗██║  ██║██║  ██║
-   ╚═╝   ╚═╝  ╚═╝╚══════╝       ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
-    ''')
+    logos.question_header_logo()
     print(f"\n{'*' * 17} Question {question_num+1} of 5 {'*' * 18}")
 
 
@@ -169,14 +158,7 @@ def game_summary(score, total_score, name):
     Shows user their total score at the end of the game.
     """
     os.system('clear')
-    print('''
-    ██████╗ ███████╗███████╗██╗   ██╗██╗  ████████╗███████╗██╗
-    ██╔══██╗██╔════╝██╔════╝██║   ██║██║  ╚══██╔══╝██╔════╝██║
-    ██████╔╝█████╗  ███████╗██║   ██║██║     ██║   ███████╗██║
-    ██╔══██╗██╔══╝  ╚════██║██║   ██║██║     ██║   ╚════██║╚═╝
-    ██║  ██║███████╗███████║╚██████╔╝███████╗██║   ███████║██╗
-    ╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚══════╝╚═╝   ╚══════╝╚═╝
-    ''')
+    logos.result_logo()
     print_slowly(f"\nCongratulations {name}, you have completed the quiz!")
     print_slowly("Let's take a look at how you got on....")
     percentage = round(score / total_score * 100)
@@ -244,14 +226,7 @@ def display_main_menu(name):
     Display main menu
     """
     os.system('clear')
-    print('''
-   ███╗   ███╗ █████╗ ██╗███╗   ██╗    ███╗   ███╗███████╗███╗   ██╗██╗   ██╗
-   ████╗ ████║██╔══██╗██║████╗  ██║    ████╗ ████║██╔════╝████╗  ██║██║   ██║
-   ██╔████╔██║███████║██║██╔██╗ ██║    ██╔████╔██║█████╗  ██╔██╗ ██║██║   ██║
-   ██║╚██╔╝██║██╔══██║██║██║╚██╗██║    ██║╚██╔╝██║██╔══╝  ██║╚██╗██║██║   ██║
-   ██║ ╚═╝ ██║██║  ██║██║██║ ╚████║    ██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝
-   ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝    ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝
-    ''')
+    logos.main_menu_logo()
 
     # loop until user chooses to exit
     menu_displayed = False
@@ -276,6 +251,7 @@ def display_main_menu(name):
             display_instructions(name)
             menu_displayed = False
         elif choice == '3':
+            display_about_developer(name)
             menu_displayed = False
         elif choice == '4':
             print("Exiting program...We hope to see you again soon!")
@@ -289,15 +265,7 @@ def display_instructions(name):
     Displays instructions on how to play the game
     """
     os.system('clear')
-    print('''
-
-      ██████╗ ██╗   ██╗██╗███████╗     ██████╗ ██╗   ██╗██╗██████╗ ███████╗
-     ██╔═══██╗██║   ██║██║╚══███╔╝    ██╔════╝ ██║   ██║██║██╔══██╗██╔════╝
-     ██║   ██║██║   ██║██║  ███╔╝     ██║  ███╗██║   ██║██║██║  ██║█████╗
-     ██║▄▄ ██║██║   ██║██║ ███╔╝      ██║   ██║██║   ██║██║██║  ██║██╔══╝
-     ╚██████╔╝╚██████╔╝██║███████╗    ╚██████╔╝╚██████╔╝██║██████╔╝███████╗
-      ╚══▀▀═╝  ╚═════╝ ╚═╝╚══════╝     ╚═════╝  ╚═════╝ ╚═╝╚═════╝ ╚══════╝
-    ''')
+    logos.display_instructions_logo()
     print_slowly("************* THE AIM OF THE GAME ************\n".center(80))
     print("The aim of the game is to correctly guess the".center(80))
     print("release date of the movie.".center(80))
@@ -340,20 +308,10 @@ def display_instructions(name):
 
 
 def landing_page():
-    print('''
-    ████████╗██╗  ██╗███████╗    ███╗   ███╗ ██████╗ ██╗   ██╗██╗███████╗
-    ╚══██╔══╝██║  ██║██╔════╝    ████╗ ████║██╔═══██╗██║   ██║██║██╔════╝
-       ██║   ███████║█████╗      ██╔████╔██║██║   ██║██║   ██║██║█████╗
-       ██║   ██╔══██║██╔══╝      ██║╚██╔╝██║██║   ██║╚██╗ ██╔╝██║██╔══╝
-       ██║   ██║  ██║███████╗    ██║ ╚═╝ ██║╚██████╔╝ ╚████╔╝ ██║███████╗
-       ╚═╝   ╚═╝  ╚═╝╚══════╝    ╚═╝     ╚═╝ ╚═════╝   ╚═══╝  ╚═╝╚══════╝
-                         ██████╗ ██╗   ██╗██╗███████╗██╗
-                        ██╔═══██╗██║   ██║██║╚══███╔╝██║
-                        ██║   ██║██║   ██║██║  ███╔╝ ██║
-                        ██║▄▄ ██║██║   ██║██║ ███╔╝  ╚═╝
-                        ╚██████╔╝╚██████╔╝██║███████╗██╗
-                         ╚══▀▀═╝  ╚═════╝ ╚═╝╚══════╝╚═╝
-    ''')
+    """
+    Displays landing page - the first page the user sees
+    """
+    logos.landing_page_logo()
     print("Hello and welcome to The Movie Quiz!".center(80))
     print("")
     print_slowly("The Quiz where your knowledge of movies and,".center(80))
@@ -367,16 +325,35 @@ def landing_page():
     print_slowly("We have an impressive archive of over 135 movies".center(80))
     print_slowly("to test your knowledge, so with 5 questions ".center(80))
     print_slowly("per quiz, you are sure to have a varried".center(80))
-    print_slowly("experience, everytime you play!".center(80))
+    print_slowly("experience, everytime you play!\n".center(80))
 
+    choice = ""
+    nav.landing_page_nav(name, display_main_menu, choice)
+
+    return name
+
+
+def display_about_developer(name):
+    """
+    Displays the about developer page.
+    """
+    os.system('clear')
+    logos.about_me_logo()
+    print("The Movie Quiz was created by Anthony Wilson".center(80))
+    print("for educational purposes".center(80))
+    print("")
+    print("LinkedIn Profile:".center(80))
+    print("https://www.linkedin.com/in/ant-wilson/".center(80))
+    print("")
+    print("GitHub Repository".center(80))
+    print("https://github.com/Tonywilson1211/TBD".center(80))
+    print("")
+    print("Thank you for taking the time to look at my project".center(80))
     while True:
-        choice = input(f"\n{name}, when ready,"
-                       " press '1' then 'Enter' to head over to the"
-                       " main menu: ".center(80))
+        choice = input("\nEnter '1' to return to the main menu: ")
         if choice.lower() == '1':
             display_main_menu(name)  # display the main menu again
             break
-    return name
 
 
 landing_page()
