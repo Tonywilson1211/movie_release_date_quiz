@@ -14,6 +14,9 @@ def wipe_page():
     os.system('cls')
 
 
+wipe_page()
+
+
 def print_slowly(text):
     """
     animation to make text appear to be typed out one letter at a time 
