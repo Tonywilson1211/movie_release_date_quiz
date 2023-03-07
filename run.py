@@ -4,12 +4,30 @@ import os
 import time
 import logos
 import nav
+import sys
+import termios
+import tty
+
+
+def wipe_page():
+    os.system('clear')
+    os.system('cls')
 
 
 def print_slowly(text):
-    for char in text:
-        print(char, end='', flush=True)
-        time.sleep(0.005)
+    """
+    animation to make text appear to be typed out one letter at a time 
+    rather than appear in bulk.
+    """
+    fd = sys.stdin.fileno()
+    old_settings = termios.tcgetattr(fd)
+    try:
+        tty.setraw(fd)  # set terminal to raw mode
+        for char in text:
+            print(char, end='', flush=True)
+            time.sleep(0.005)
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)  # restore terminal settings
     print()
 
 
@@ -27,26 +45,9 @@ def print_question_header(question_num):
     """
     Print movie name and question number out of 10.
     """
-    os.system('clear')
+    wipe_page()
     logos.question_header_logo()
     print(f"\n{'*' * 17} Question {question_num+1} of 5 {'*' * 18}")
-
-
-def get_clue_choice():
-    """
-    Get the user's choice on whether they want a clue.
-    """
-    error_message = ""
-    while True:
-        clue_choice = input(f"\033[F\033[K{error_message} \nWould "
-                            "you like a clue? (Y or N): ").strip().upper()
-        if clue_choice not in ['Y', 'N']:
-            error_message = "\033[F\033[KInput not recognised. "\
-                            "Please enter 'Y' or 'N'"
-        else:
-            error_message = ""
-            break
-    return clue_choice
 
 
 def print_question_clue(question):
@@ -157,7 +158,7 @@ def game_summary(score, total_score, name):
     """
     Shows user their total score at the end of the game.
     """
-    os.system('clear')
+    wipe_page()
     logos.result_logo()
     print_slowly(f"\nCongratulations {name}, you have completed the quiz!")
     print_slowly("Let's take a look at how you got on....")
@@ -185,7 +186,7 @@ def play_game(name):
         title = question['title'].upper()
         print_slowly(f"\nMovie Title:   {title}\n\n")
         # get clue choice from user
-        clue_choice = get_clue_choice()
+        clue_choice = nav.get_clue_choice()
         if clue_choice == 'Y':
             print_question_clue(question)
         # get answer from user
@@ -225,7 +226,7 @@ def display_main_menu(name):
     """
     Display main menu
     """
-    os.system('clear')
+    wipe_page()
     logos.main_menu_logo()
 
     # loop until user chooses to exit
@@ -264,7 +265,7 @@ def display_instructions(name):
     """
     Displays instructions on how to play the game
     """
-    os.system('clear')
+    wipe_page()
     logos.display_instructions_logo()
     print_slowly("************* THE AIM OF THE GAME ************\n".center(80))
     print("The aim of the game is to correctly guess the".center(80))
@@ -344,7 +345,7 @@ def display_about_developer(name):
     """
     Displays the about developer page.
     """
-    os.system('clear')
+    wipe_page()
     logos.about_me_logo()
     print("The Movie Quiz was created by Anthony Wilson".center(80))
     print("for educational purposes".center(80))
