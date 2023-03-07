@@ -208,6 +208,7 @@ def play_game(name):
             end_choice = end_game_get_user_choice()
             if end_choice == 'M':
                 display_main_menu(name)
+                wipe_page()
             elif end_choice == 'E':
                 print("Exiting program...We hope to see you again soon!")
                 exit()
@@ -216,6 +217,7 @@ def play_game(name):
             continue
         elif choice == 'M':
             display_main_menu(name)
+            wipe_page()
         elif choice == 'E':
             print("Exiting program...We hope to see you again soon!")
             exit()
