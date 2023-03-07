@@ -9,10 +9,6 @@ import termios
 import tty
 
 
-def wipe_page():
-    os.system('clear')
-
-
 def print_slowly(text):
     """
     animation to make text appear to be typed out one letter at a time 
@@ -44,9 +40,26 @@ def print_question_header(question_num):
     """
     Print movie name and question number out of 10.
     """
-    wipe_page()
+    os.system('clear')
     logos.question_header_logo()
     print(f"\n{'*' * 17} Question {question_num+1} of 5 {'*' * 18}")
+
+
+def get_clue_choice():
+    """
+    Get the user's choice on whether they want a clue.
+    """
+    error_message = ""
+    while True:
+        clue_choice = input(f"\033[F\033[K{error_message} \nWould "
+                            "you like a clue? (Y or N): ").strip().upper()
+        if clue_choice not in ['Y', 'N']:
+            error_message = "\033[F\033[KInput not recognised. "\
+                            "Please enter 'Y' or 'N'"
+        else:
+            error_message = ""
+            break
+    return clue_choice
 
 
 def print_question_clue(question):
@@ -157,7 +170,7 @@ def game_summary(score, total_score, name):
     """
     Shows user their total score at the end of the game.
     """
-    wipe_page()
+    os.system('clear')
     logos.result_logo()
     print_slowly(f"\nCongratulations {name}, you have completed the quiz!")
     print_slowly("Let's take a look at how you got on....")
@@ -185,7 +198,7 @@ def play_game(name):
         title = question['title'].upper()
         print_slowly(f"\nMovie Title:   {title}\n\n")
         # get clue choice from user
-        clue_choice = nav.get_clue_choice()
+        clue_choice = get_clue_choice()
         if clue_choice == 'Y':
             print_question_clue(question)
         # get answer from user
@@ -208,7 +221,7 @@ def play_game(name):
             end_choice = end_game_get_user_choice()
             if end_choice == 'M':
                 display_main_menu(name)
-                wipe_page()
+                os.system('clear')
             elif end_choice == 'E':
                 print("Exiting program...We hope to see you again soon!")
                 exit()
@@ -217,7 +230,7 @@ def play_game(name):
             continue
         elif choice == 'M':
             display_main_menu(name)
-            wipe_page()
+            os.system('clear')
         elif choice == 'E':
             print("Exiting program...We hope to see you again soon!")
             exit()
@@ -227,7 +240,7 @@ def display_main_menu(name):
     """
     Display main menu
     """
-    wipe_page()
+    os.system('clear')
     logos.main_menu_logo()
 
     # loop until user chooses to exit
@@ -266,7 +279,7 @@ def display_instructions(name):
     """
     Displays instructions on how to play the game
     """
-    wipe_page()
+    os.system('clear')
     logos.display_instructions_logo()
     print_slowly("************* THE AIM OF THE GAME ************\n".center(80))
     print("The aim of the game is to correctly guess the".center(80))
@@ -323,7 +336,7 @@ def landing_page():
     """
     Displays landing page - the first page the user sees
     """
-    wipe_page()
+    os.system('clear')
     logos.landing_page_logo()
     print("Hello and welcome to The Movie Quiz!".center(80))
     print("")
@@ -347,7 +360,7 @@ def display_about_developer(name):
     """
     Displays the about developer page.
     """
-    wipe_page()
+    os.system('clear')
     logos.about_me_logo()
     print("The Movie Quiz was created by Anthony Wilson".center(80))
     print("for educational purposes".center(80))
