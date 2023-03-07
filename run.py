@@ -322,6 +322,7 @@ def landing_page():
     """
     Displays landing page - the first page the user sees
     """
+    wipe_page()
     logos.landing_page_logo()
     print("Hello and welcome to The Movie Quiz!".center(80))
     print("")
