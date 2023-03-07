@@ -11,10 +11,6 @@ import tty
 
 def wipe_page():
     os.system('clear')
-    os.system('cls')
-
-
-wipe_page()
 
 
 def print_slowly(text):
