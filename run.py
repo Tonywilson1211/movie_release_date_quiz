@@ -264,9 +264,11 @@ def display_main_menu(name):
             menu_displayed = False
         elif choice == '2':
             display_instructions(name)
+            os.system('clear')
             menu_displayed = False
         elif choice == '3':
             display_about_developer(name)
+            os.system('clear')
             menu_displayed = False
         elif choice == '4':
             print("Exiting program...We hope to see you again soon!")
